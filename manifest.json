@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "Print HTML to Console",
+    "version": "1.0",
+    "description": "A simple Chrome extension to print the current webpage's HTML to the console",
+    "permissions": ["activeTab","scripting"],
+    "host_permissions": ["<all_urls>"],
+    "action": {
+      "default_popup": "Views/popup.html",
+      "default_icon": {
+        "16": "Images/Logo.png",
+        "48": "Images/Logo.png",
+        "128": "Images/Logo.png"
+      }
+    },
+    "icons": {
+      "16": "Images/Logo.png",
+      "48": "Images/Logo.png",
+      "128": "Images/Logo.png"
+    }
+  }
+  
