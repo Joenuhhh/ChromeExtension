@@ -1,133 +1,34 @@
+<!-- TeacherSettings.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/Script/teacher-settings.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
-  <title>Chrome Extension Options</title>
+    <style>
+        /* Set the width and height of the popup */
+        body {
+            width: 500px; /* Specify the width in pixels or percentage */
+            height: 800px; /* Specify the height in pixels or percentage */
+        }
+    </style>
+    <title>Chrome Extension Options</title>
 </head>
 
 <body>
   <div class="container mt-3">
-        <tbody>
-          <!-- Repeat this block for each competency setting -->
-          <h2>Dependency Settings</h2>
-          <form id="dependencyForm">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Competency</th>
-                  <th scope="col">Bucket One</th>
-                  <th scope="col">Bucket Two</th>
-                  <th scope="col">Bucket Three</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Competency One -->
-                <tr>
-                  <th scope="row">Competency One</th>
-                  <td>
-                    <input type="radio" id="competency1Bucket1" name="competencyOne" class="custom-control-input">
-                    <label class="custom-control-label" for="competency1Bucket1"></label>
-                  </td>
-                  <td>
-                    <input type="radio" id="competency1Bucket2" name="competencyOne" class="custom-control-input">
-                    <label class="custom-control-label" for="competency1Bucket2"></label>
-                  </td>
-                  <td>
-                    <input type="radio" id="competency1Bucket3" name="competencyOne" class="custom-control-input">
-                    <label class="custom-control-label" for="competency1Bucket3"></label>
-                  </td>
-                </tr>
-                <!-- Competency Two -->
-                <tr>
-                  <th scope="row">Competency Two</th>
-                  <td>
-                    <input type="radio" id="competency2Bucket1" name="competencyTwo" class="custom-control-input">
-                    <label class="custom-control-label" for="competency2Bucket1"></label>
-                  </td>
-                  <td>
-                    <input type="radio" id="competency2Bucket2" name="competencyTwo" class="custom-control-input">
-                    <label class="custom-control-label" for="competency2Bucket2"></label>
-                  </td>
-                  <td>
-                    <input type="radio" id="competency2Bucket3" name="competencyTwo" class="custom-control-input">
-                    <label class="custom-control-label" for="competency2Bucket3"></label>
-                  </td>
-                </tr>
-                <!-- Competency Three -->
-                <tr>
-                  <th scope="row">Competency Three</th>
-                  <td>
-                    <input type="radio" id="competency3Bucket1" name="competencyThree" class="custom-control-input">
-                    <label class="custom-control-label" for="competency3Bucket1"></label>
-                  </td>
-                  <td>
-                    <input type="radio" id="competency3Bucket2" name="competencyThree" class="custom-control-input">
-                    <label class="custom-control-label" for="competency3Bucket2"></label>
-                  </td>
-                  <td>
-                    <input type="radio" id="competency3Bucket3" name="competencyThree" class="custom-control-input">
-                    <label class="custom-control-label" for="competency3Bucket3"></label>
-                  </td>
-                </tr>
-                <!-- Competency Four -->
-                <tr>
-                  <th scope="row">Competency Four</th>
-                  <td>
-                    <input type="radio" id="competency4Bucket1" name="competencyFour" class="custom-control-input">
-                    <label class="custom-control-label" for="competency4Bucket1"></label>
-                  </td>
-                  <td>
-                    <input type="radio" id="competency4Bucket2" name="competencyFour" class="custom-control-input">
-                    <label class="custom-control-label" for="competency4Bucket2"></label>
-                  </td>
-                  <td>
-                    <input type="radio" id="competency4Bucket3" name="competencyFour" class="custom-control-input">
-                    <label class="custom-control-label" for="competency4Bucket3"></label>
-                  </td>
-                </tr>
-                <!-- Competency Five -->
-                <tr>
-                  <th scope="row">Competency Five</th>
-                  <td>
-                    <input type="radio" id="competency5Bucket1" name="competencyFive" class="custom-control-input">
-                    <label class="custom-control-label" for="competency5Bucket1"></label>
-                  </td>
-                  <td>
-                    <input type="radio" id="competency5Bucket2" name="competencyFive" class="custom-control-input">
-                    <label class="custom-control-label" for="competency5Bucket2"></label>
-                  </td>
-                  <td>
-                    <input type="radio" id="competency5Bucket3" name="competencyFive" class="custom-control-input">
-                    <label class="custom-control-label" for="competency5Bucket3"></label>
-                  </td>
-                </tr>
-                <!-- Competency Six -->
-                <tr>
-                  <th scope="row">Competency Six</th>
-                  <td>
-                    <input type="radio" id="competency6Bucket1" name="competencySix" class="custom-control-input">
-                    <label class="custom-control-label"></label>
-                   </tbody>
-            </table>
-            <button type="submit" class="btn btn-primary ml-2">Save Settings</button>
-          </form>
+      <h2>Teacher Settings</h2>
+      <!-- Display the table here -->
+      <div id="tableContainer">
+          <!-- The table will be generated here -->
+      </div>
   </div>
-
-  <!-- Optional JavaScript; choose one of the two! -->
-
-  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Your script for saving settings -->
-  <script src="save-settings.js"></script>
+  <!-- Include your external JavaScript file -->
 </body>
 
 </html>
