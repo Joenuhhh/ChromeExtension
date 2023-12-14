@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Print HTML</title>
-  <script src="/Script/popup.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <title>Settings Input</title>
 </head>
+
 <body>
-  <button id="printHtmlBtn">Print HTML to Console</button>
+    <div class="container mt-3">
+        <h2>Teacher Settings</h2>
+        <form id="settingsForm" action="TeacherSettings.html" method="GET">
+            <!-- Number of Competencies -->
+                     <!-- Username -->
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="competencies">Number of Competencies (Max 15):</label>
+                <input type="number" id="competencies" name="competencies" class="form-control" min="1" max="15" required>
+            </div>
+
+            <!-- Number of Buckets -->
+            <div class="form-group">
+                <label for="buckets">Number of Buckets (Max 15):</label>
+                <input type="number" id="buckets" name="buckets" class="form-control" min="1" max="15" required>
+            </div>
+
+   
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
