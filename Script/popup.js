@@ -18,6 +18,19 @@ document.getElementById('settingsForm').addEventListener('submit', function(even
     });
 });
 
+// Add an event listener to the extension icon click
+chrome.action.onClicked.addListener(function (tab) {
+    // Clear the bucketData in Chrome storage
+    chrome.storage.sync.remove(['bucketData'], function() {
+        // Reload the popup.html
+        chrome.scripting.executeScript({
+            target: {tabId: tab.id},
+            function: function () {
+                chrome.tabs.reload();
+            }
+        });
+    });
+});
 
 //
 //chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {

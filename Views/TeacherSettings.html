@@ -1,5 +1,3 @@
-<!-- TeacherSettings.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,14 +19,21 @@
 </head>
 
 <body>
-  <div class="container mt-3">
-      <h2>Teacher Settings</h2>
-      <!-- Display the table here -->
-      <div id="tableContainer">
-          <!-- The table will be generated here -->
-      </div>
-  </div>
-  <!-- Include your external JavaScript file -->
+    <div class="container mt-3">
+        <h2>Teacher Settings</h2>
+        <!-- Display the table here -->
+        <div id="tableContainer">
+            <!-- The table will be generated here -->
+        </div>
+    </div>
+    <!-- Include your external JavaScript file -->
+
+    <!-- Form to submit competencies and buckets to the next page -->
+    <form id="settingsForm" action="/Views/chart.html" method="POST">
+        <!-- Button to show competencies in buckets and log them -->
+        <button id="showCompetenciesButton" class="btn btn-primary">Show Competencies</button>
+    </form>
+
 </body>
 
 </html>
