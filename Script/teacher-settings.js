@@ -34,7 +34,7 @@ chrome.storage.local.set({ bucketData }, function() {
                 for (let i = 1; i <= competencies; i++) {
                     const row = document.createElement('tr');
                     const dependencyCell = document.createElement('td');
-                    dependencyCell.textContent = `Dependency ${i}`;
+                    dependencyCell.textContent = `Competency ${i}`;
                     row.appendChild(dependencyCell);
 
                     for (let j = 1; j <= buckets; j++) {
