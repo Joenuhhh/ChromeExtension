@@ -42,14 +42,14 @@ chrome.storage.local.set({ bucketData }, function() {
                         const radioButton = document.createElement('input');
                         radioButton.type = 'radio';
                         radioButton.name = `radioGroup_${i}`;
-                        radioButton.value = `Value ${i}-${j}`;
+                        radioButton.value = `${i}-${j}`;
 
                         radioCell.appendChild(radioButton);
                         row.appendChild(radioCell);
                     }
                     table.appendChild(row);
                 }
-
+                
                 // Append the table to the container
                 tableContainer.appendChild(table);
             }
@@ -85,6 +85,9 @@ chrome.storage.local.set({ bucketData }, function() {
                 chrome.storage.local.set({ bucketData }, function() {
                     // Submit the form to navigate to chart.html after storage is updated
                     document.getElementById('settingsForm').submit();
+
+                    // Store the selected number of buckets in Chrome storage
+                    chrome.storage.local.set({ selectedBuckets: buckets });
                 });
             });
         } catch (error) {

@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-//tomorrow start by finding a way to display all student data
 // Clear existing studentList data in Chrome local storage
 chrome.storage.local.remove(['studentList'], function() {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -88,21 +87,12 @@ chrome.storage.local.remove(['studentList'], function() {
                 console.log(studentList);
                 // Save the studentList to Chrome storage
                 chrome.storage.local.set({ studentList }, function () {
-                    console.log('Student data saved to Chrome storage');
+                    console.log('Student data saved to Chrome local storage');
                 });
             },
         });
     });
 });
 
-
-
-
-
-
-
-
-//// popup.js
-//
 
 
