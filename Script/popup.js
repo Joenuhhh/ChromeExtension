@@ -94,5 +94,3 @@ chrome.storage.local.remove(['studentList'], function() {
     });
 });
 
-
-

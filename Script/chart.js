@@ -74,9 +74,17 @@ chrome.storage.local.get(['bucketData'], function (result) {
 });
 
 // Retrieve studentList data from Chrome local storage
-chrome.storage.local.get(['studentList'], function (result) {
+chrome.storage.local.get(['studentList', 'competencyToBucket', 'bucketData'], function (result) {
     const studentList = result.studentList;
-
+    const bucketData = result.bucketData;
+            // Reverse mapping from buckets to competencies
+            const competencyToBucket = {};
+            for (const bucketName in bucketData) {
+                bucketData[bucketName].forEach(value => {
+                    const [competency, bucket] = value.split('-');
+                    competencyToBucket[`Competency ${competency}`] = `Bucket ${bucket}`;
+                });
+            }
     // Check if studentList exists and has data
     if (studentList && studentList.length > 0) {
         // Create a container div to display student data
@@ -105,7 +113,14 @@ chrome.storage.local.get(['studentList'], function (result) {
                     competencyList.appendChild(competencyItem);
                 }
             }
-
+            const uniqueBuckets = new Set(Object.values(competencyToBucket)).size;
+            console.log('Number of Buckets:', uniqueBuckets);
+            // Add the "Bucket Grade" item
+            for (let i = 0; i < uniqueBuckets; i++){
+            const bucketGradeItem = document.createElement('li');
+            bucketGradeItem.textContent = 'Bucket N' +': [Calculate the bucket grade here]';
+            competencyList.appendChild(bucketGradeItem);
+            }
             studentDiv.appendChild(competencyList);
             container.appendChild(studentDiv);
         });
