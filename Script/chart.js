@@ -103,27 +103,146 @@ chrome.storage.local.get(['studentList', 'competencyToBucket', 'bucketData'], fu
 
             // Create an unordered list for displaying competencies and grades
             const competencyList = document.createElement('ul');
-
+            var bucketScores = [];
             // Iterate through each competency in the student
             for (const competencyName in student) {
                 if (competencyName !== 'First Name' && competencyName !== 'Last Name' && competencyName !== 'ID') {
                     const competencyGrades = student[competencyName];
+                    var bucket = competencyToBucket[competencyName];
                     const competencyItem = document.createElement('li');
-                    competencyItem.textContent = `${competencyName}: ${competencyGrades.join(', ')} (Average: ${calculateAverage(competencyGrades)})`;
+                    var avg = calculateAverage(competencyGrades);
+                    
+                    if(bucket!== undefined)
+                    {
+                    var currentBucket = bucketScores.find(m=>m.bucketName==bucket);
+                    console.log({currentBucket:currentBucket});
+                    console.log({bucket:bucket});
+                    console.log({bucketScores:bucketScores});
+                    console.log("__________");
+                    if(currentBucket === null || currentBucket === undefined){
+                        bucketScores.push({
+                            bucketName:bucket,
+                            scores:[avg],
+                        })
+                    } else{
+                        currentBucket.scores.push(avg);
+
+                    }
+                    console.log({currentBucket_2:currentBucket});
+                    console.log({bucketScores_2:bucketScores});
+                    console.log("__________");
+                    }
+
+                    console.log({student_competencyToBucket:competencyToBucket});
+                    competencyItem.textContent = `${competencyName}: ${competencyGrades.join(', ')} (Average: ${avg})`;
                     competencyList.appendChild(competencyItem);
                 }
             }
             const uniqueBuckets = new Set(Object.values(competencyToBucket)).size;
             console.log('Number of Buckets:', uniqueBuckets);
+            console.log({student:student});
             // Add the "Bucket Grade" item
             for (let i = 0; i < uniqueBuckets; i++){
             const bucketGradeItem = document.createElement('li');
-            bucketGradeItem.textContent = 'Bucket N' +': [Calculate the bucket grade here]';
+            var currentName = `Bucket ${i+1}`;
+            var currentBuckett = bucketScores.find(m=>m.bucketName === currentName);
+            
+            if(currentBuckett === undefined){
+                bucketGradeItem.textContent = `Bucket ${i+1} = ${0}`;
+            }
+            else{
+                console.log({summary_bucketScores:currentName});
+            console.log({summary_bucketScores:bucketScores});
+            console.log({summary_bucketScores:currentBuckett});
+            console.log({summary_bucketScores_scores:currentBuckett.scores});
+            var scores = currentBuckett.scores;
+            var scoreCount = scores.length;
+            //JS loop basically saying var current total = 0, and then doing current total = currenttotal +=score
+            var scoreTotal = scores.reduce((pv,cv)=> parseFloat(pv)+parseFloat(cv),0);
+        
+
+            var scoreAVG = (scoreTotal ?? 0)/(scoreCount ?? 1);
+            console.log({summary_total:scoreTotal});
+            console.log({summary_total:scoreAVG});
+            bucketGradeItem.textContent = `Bucket ${i+1} = ${scoreAVG}`;
+            }
+            
             competencyList.appendChild(bucketGradeItem);
             }
             studentDiv.appendChild(competencyList);
             container.appendChild(studentDiv);
         });
+
+
+
+
+
+
+
+
+
+        //creating student list to save manipulate globally
+        var fullStudentList = [];
+        studentList.forEach(function (student, studentIndex) {
+
+            // Create an unordered list for displaying competencies and grades
+            var bucketScores = [];
+            // Iterate through each competency in the student
+            for (const competencyName in student) {
+                if (competencyName !== 'First Name' && competencyName !== 'Last Name' && competencyName !== 'ID') {
+                    const competencyGrades = student[competencyName];
+                    var bucket = competencyToBucket[competencyName];
+                    var avg = calculateAverage(competencyGrades);
+                    
+                    if(bucket!== undefined)
+                    {
+                    var currentBucket = bucketScores.find(m=>m.bucketName==bucket);
+
+                    if(currentBucket === null || currentBucket === undefined){
+                        bucketScores.push({
+                            bucketName:bucket,
+                            scores:[avg],
+                        })
+                    } else{
+                        currentBucket.scores.push(avg);
+
+                    }
+
+                    }
+                }
+            }
+            const uniqueBuckets = new Set(Object.values(competencyToBucket)).size;
+        
+            // Add the "Bucket Grade" item
+            for (let i = 0; i < uniqueBuckets; i++){
+            const bucketGradeItem = document.createElement('li');
+            var currentName = `Bucket ${i+1}`;
+            var currentBuckett = bucketScores.find(m=>m.bucketName === currentName);
+            if (currentBuckett !== undefined){
+                var scores = currentBuckett.scores;
+                var scoreCount = scores.length;
+                //JS loop basically saying var current total = 0, and then doing current total = currenttotal +=score
+                var scoreTotal = scores.reduce((pv,cv)=> parseFloat(pv)+parseFloat(cv),0);
+            
+    
+                var scoreAVG = (scoreTotal ?? 0)/(scoreCount ?? 1);
+            }
+           
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
 
         // Append the container to the body
         document.body.appendChild(container);
