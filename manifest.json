@@ -23,5 +23,11 @@
       "matches": ["<all_urls>"],
       "js": ["/Script/teacher-settings.js", "/Script/save-settings.js", "/Script/popup.js"]
     }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["node_modules/chart.js/dist/chart.js"],
+      "matches": ["<all_urls>"]
+    }
   ]
 }
