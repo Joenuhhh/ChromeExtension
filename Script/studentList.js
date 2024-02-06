@@ -263,36 +263,32 @@ function calculateAverage(grades) {
 
 
 
-// Convert to CSV SECTION
-function convertStudentListToCSV(studentList, competencyToBucket) {
-    // Check if competencyToBucket is defined and not null
-    if (!competencyToBucket) {
-        console.error('competencyToBucket is undefined or null.');
-        return ''; // Return an empty string to handle the error gracefully
+function convertStudentListToCSV(studentList) {
+    // Start with the header row, which includes ID, First Name, Last Name, and dynamic competency headers
+    let headers = ['ID', 'First Name', 'Last Name'];
+    // Assuming all students have the same competencies, use the first student to extract the competency names
+    if (studentList.length > 0) {
+        for (const key in studentList[0]) {
+            if (key.startsWith('Competency')) {
+                headers.push(key);
+            }
+        }
     }
-
-    // First, we need to determine all unique buckets to create the header row
-    const uniqueBuckets = [...new Set(Object.values(competencyToBucket))];
-
-    // Create the header row with student information and bucket names
-    let csvContent = 'ID,First Name,Last Name,' + uniqueBuckets.join(',') + '\r\n';
+    let csvContent = headers.join(',') + '\r\n';
 
     // Iterate through each student to create a row
     studentList.forEach(student => {
-        // Start with student information
-        let row = `${student.ID},${student['First Name']},${student['Last Name']},`;
+        // Extract student information
+        const id = student['ID'][0]; // Assuming ID is an array, we take the first element
+        const firstName = student['First Name'][0]; // Assuming First Name is an array, we take the first element
+        const lastName = student['Last Name'][0]; // Assuming Last Name is an array, we take the first element
+        let row = `${id},${firstName},${lastName},`;
 
-        // Calculate the averages for each bucket and add them to the row
-        uniqueBuckets.forEach(bucket => {
-            const bucketScores = student.competencies
-                .filter(comp => competencyToBucket[comp.name] === bucket)
-                .map(comp => calculateAverage(comp.scores));
-
-            const bucketAverage = bucketScores.length > 0
-                ? bucketScores.reduce((sum, score) => sum + score, 0) / bucketScores.length
-                : 0;
-
-            row += bucketAverage + ',';
+        // Extract the competencies and grades
+        headers.slice(3).forEach(header => {
+            const grades = student[header];
+            // Join all grades for the current competency into a single string
+            row += `"${grades.join('|')}",`; // We use '|' to separate individual grades within a competency
         });
 
         // Remove the last comma and add a newline character
@@ -302,10 +298,13 @@ function convertStudentListToCSV(studentList, competencyToBucket) {
     return csvContent;
 }
 
+
+
   
   function saveDataToChromeStorage(csvData) {
     chrome.storage.local.set({ 'exportedCSV': csvData }, function() {
         console.log('CSV data has been saved to Chrome storage.');
+        
     });
     
 }
@@ -315,7 +314,20 @@ function convertStudentListToCSV(studentList, competencyToBucket) {
 // Define a function to handle the button click event
 function handleExportButtonClick() {
     console.log('Button clicked!');
+   
+    
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Define the exportStudentsToCSV function
@@ -331,6 +343,8 @@ function exportStudentsToCSV() {
                 // Log the generated CSV data
                 console.log('Generated CSV data:');
                 console.log(csvData);
+                downloadCSV(csvData, 'StudentList.csv'); // Trigger the file download
+// Make sure the exportToCSV function from the previous explanation is also included in this file
     
             // ...
         } else {
@@ -351,5 +365,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+function downloadCSV(csvContent, fileName) {
+    // Create a Blob with the CSV content
+    var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
 
-// Make sure the exportToCSV function from the previous explanation is also included in this file
+    // Create a link element
+    var link = document.createElement("a");
+    var url = URL.createObjectURL(blob);
+
+    // Set link attributes
+    link.setAttribute("href", url);
+    link.setAttribute("download", fileName);
+
+    // Append link to the body
+    document.body.appendChild(link);
+
+    // Trigger the download by simulating a click
+    link.click();
+
+    // Clean up by removing the link
+    document.body.removeChild(link);
+}
+
+
