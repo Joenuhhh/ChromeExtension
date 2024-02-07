@@ -20,7 +20,10 @@ const mockChrome = {
     executeScript: jest.fn(),
   },
 };
-
+// Define mock data for testing
+const mockCompetencies = 3; // Example number of competencies
+const mockBuckets = 2; // Example number of buckets
+const mockBucketData = {};
 // Assign the mock chrome object to the global object
 global.chrome = mockChrome;
 
@@ -37,15 +40,6 @@ test('chrome.storage.sync.set is called', async () => {
 
 
 
-
-
-
-
-// Define mock data for testing
-const mockCompetencies = 3; // Example number of competencies
-const mockBuckets = 2; // Example number of buckets
-
-const mockBucketData = {};
 
 // Initialize bucket data
 for (let i = 1; i <= mockBuckets; i++) {
@@ -201,5 +195,62 @@ test('Extracts student data and saves it to Chrome local storage', () => {
 
   // Assert that the mock chrome.storage.local.set method is called with the expected student list
   expect(mockChrome.storage.local.set).toHaveBeenCalledWith({ studentList: expectedStudentList }, expect.any(Function));
+});
+
+
+// Function to find unique buckets and calculate average scores
+function findUniqueBucketsAndCalculateAvg(competencyToBucket, bucketScores) {
+  const uniqueBuckets = new Set(Object.values(competencyToBucket)).size;
+  const bucketAverages = [];
+
+  // Loop through each unique bucket
+  for (let i = 0; i < uniqueBuckets; i++) {
+    const currentName = `Bucket ${i + 1}`;
+    const currentBucket = bucketScores.find(bucket => bucket.bucketName === currentName);
+    if (currentBucket !== undefined) {
+      const scores = currentBucket.scores;
+      const scoreCount = scores.length;
+      const scoreTotal = scores.reduce((total, score) => total + parseFloat(score), 0);
+      const scoreAvg = scoreCount > 0 ? scoreTotal / scoreCount : 0;
+      bucketAverages.push({ bucketName: currentName, averageScore: scoreAvg });
+    }
+  }
+
+  return bucketAverages;
+}
+// Test case for finding unique buckets and calculating average scores
+test('Finds unique buckets and calculates average scores', () => {
+  // Mock data for competencyToBucket and bucketScores
+  const competencyToBucket = {
+    competency1: 'Bucket 1',
+    competency2: 'Bucket 1',
+    competency3: 'Bucket 2',
+    competency4: 'Bucket 3',
+  };
+
+  const bucketScores = [
+    { bucketName: 'Bucket 1', scores: [90, 85, 88] },
+    { bucketName: 'Bucket 2', scores: [95, 92, 88, 90] },
+    { bucketName: 'Bucket 3', scores: [85, 82, 90] },
+  ];
+
+  // Invoke the function with mock data
+  const result = findUniqueBucketsAndCalculateAvg(competencyToBucket, bucketScores);
+
+  // Round the average scores to 2 decimal places
+  const roundedResult = result.map(({ bucketName, averageScore }) => ({
+    bucketName,
+    averageScore: Math.round(averageScore * 100) / 100, // Round to 2 decimal places
+  }));
+
+  // Expected result based on the mock data
+  const expected = [
+    { bucketName: 'Bucket 1', averageScore: 87.67 },
+    { bucketName: 'Bucket 2', averageScore: 91.25 },
+    { bucketName: 'Bucket 3', averageScore: 85.67 },
+  ];
+
+  // Check if the result matches the expected values
+  expect(roundedResult).toEqual(expected);
 });
 
