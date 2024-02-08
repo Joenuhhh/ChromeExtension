@@ -20,4 +20,4 @@ The Grade Organizer is a Chrome extension designed to assist teachers in efficie
 1. Clone the repository:
 
 ```bash
-[git clone https://github.com/yourusername/grade-organizer.git](https://github.com/Joenuhhh/ChromeExtension)https://github.com/Joenuhhh/ChromeExtension
+[git clone https://github.com/Joenuhhh/ChromeExtension)https://github.com/Joenuhhh/ChromeExtension]
