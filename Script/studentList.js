@@ -312,13 +312,14 @@ function convertStudentListToCSV(studentList) {
             }
         });
 
-        // Fill the bucket columns with scores
+        // Calculate and fill the bucket columns with average scores
         bucketHeaders.forEach(bucketName => {
-            const score = student.bucketScores.find(score => score.bucketName === bucketName);
-            if (score) {
-                row += `"${score.scores[0]}",`; // Add the score of the bucket to the row
+            const bucketScores = student.bucketScores.find(score => score.bucketName === bucketName);
+            if (bucketScores) {
+                const avgScore = calculateAverage(bucketScores.scores); // Assuming a function calculateAverage calculates the average
+                row += `"${avgScore}",`; // Add the average score of the bucket to the row
             } else {
-                row += ','; // Add an empty cell if the student doesn't have a score for the bucket
+                row += ','; // Add an empty cell if the student doesn't have scores for the bucket
             }
         });
 
@@ -328,6 +329,7 @@ function convertStudentListToCSV(studentList) {
 
     return csvContent;
 }
+
 
 
 
