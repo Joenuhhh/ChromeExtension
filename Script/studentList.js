@@ -8,13 +8,20 @@ chrome.storage.local.get(['bucketData'], function (result) {
         const container = document.createElement('div');
         container.className = 'container mt-3';
 
-        // Create a header to describe the content
-        const header = document.createElement('h2');
-        header.textContent = 'Competency to Bucket Mapping';
-        container.appendChild(header);
+        // Create a big card to contain all buckets
+        const bigCard = document.createElement('div');
+        bigCard.className = 'card';
 
-        // Create a list to display mappings
-        const list = document.createElement('ul');
+        // Create a card header
+        const cardHeader = document.createElement('div');
+        cardHeader.className = 'card-header';
+        const header = document.createElement('h3');
+        header.textContent = 'Competency to Bucket Mapping';
+        cardHeader.appendChild(header);
+        bigCard.appendChild(cardHeader);
+
+        const bigCardBody = document.createElement('div');
+        bigCardBody.className = 'card-body';
 
         // Reverse mapping from buckets to competencies
         const competencyToBucket = {};
@@ -27,7 +34,6 @@ chrome.storage.local.get(['bucketData'], function (result) {
 
         // Count the number of unique buckets
         const uniqueBuckets = new Set(Object.values(competencyToBucket)).size;
-        //console.log('Number of Buckets:', uniqueBuckets);
 
         // Create buckets object to store competencies
         const buckets = {};
@@ -44,27 +50,54 @@ chrome.storage.local.get(['bucketData'], function (result) {
         // Display competencies in their respective buckets
         for (const bucketName in buckets) {
             const bucketCompetencies = buckets[bucketName];
-            const bucketHeader = document.createElement('h3');
-            bucketHeader.textContent = `${bucketName}`;
-            container.appendChild(bucketHeader);
 
+            // Create a sub-card for each bucket
+            const subCard = document.createElement('div');
+            subCard.className = 'card mb-3';
+            const subCardBody = document.createElement('div');
+            subCardBody.className = 'card-body';
+
+            // Create a header for the bucket
+            const bucketHeader = document.createElement('h5');
+            bucketHeader.className = 'card-header';
+            bucketHeader.textContent = `${bucketName}`;
+            subCardBody.appendChild(bucketHeader);
+
+            // Create a list for competencies in the bucket
             const competencyList = document.createElement('ul');
+            competencyList.className = 'list-group list-group-flush';
+
+            // Add each competency to the list
             bucketCompetencies.forEach(competency => {
                 const listItem = document.createElement('li');
                 listItem.textContent = competency;
+                listItem.className = 'list-group-item';
                 competencyList.appendChild(listItem);
             });
-            container.appendChild(competencyList);
+
+            // Append the list to the sub-card body
+            subCardBody.appendChild(competencyList);
+            subCard.appendChild(subCardBody);
+
+            // Append the sub-card to the big card body
+            bigCardBody.appendChild(subCard);
         }
+
+        // Append the big card body to the big card
+        bigCard.appendChild(bigCardBody);
+
+        // Append the big card to the container
+        container.appendChild(bigCard);
 
         // Save the competencyToBucket mapping to Chrome Storage
         chrome.storage.local.set({ competencyToBucket }, function () {
-            //console.log('Competency to Bucket mapping saved to Chrome Storage.');
-            //console.log('competencyToBucket:', competencyToBucket); // Log it here
+            console.log('Competency to Bucket mapping saved to Chrome Storage.');
+            console.log('competencyToBucket:', competencyToBucket); // Log it here
         });
 
         // Append the container to the body
         document.body.appendChild(container);
+
     } else {
         // Display a message if no mappings are found
         const noMappingsMessage = document.createElement('p');
@@ -73,163 +106,136 @@ chrome.storage.local.get(['bucketData'], function (result) {
     }
 });
 
+
+
+
+
+
+
 // Retrieve studentList data from Chrome local storage
 chrome.storage.local.get(['studentList', 'competencyToBucket', 'bucketData'], function (result) {
     const studentList = result.studentList;
     const bucketData = result.bucketData;
-            // Reverse mapping from buckets to competencies
-            const competencyToBucket = {};
-            for (const bucketName in bucketData) {
-                bucketData[bucketName].forEach(value => {
-                    const [competency, bucket] = value.split('-');
-                    competencyToBucket[`Competency ${competency}`] = `Bucket ${bucket}`;
-                });
-            }
+    // Reverse mapping from buckets to competencies
+    const competencyToBucket = {};
+    for (const bucketName in bucketData) {
+        bucketData[bucketName].forEach(value => {
+            const [competency, bucket] = value.split('-');
+            competencyToBucket[`Competency ${competency}`] = `Bucket ${bucket}`;
+        });
+    }
     // Check if studentList exists and has data
     if (studentList && studentList.length > 0) {
         // Create a container div to display student data
-        const container = document.createElement('div');
-        container.className = 'container mt-3';
+        const container = document.createElement('card', 'card-container');
+
+        container.className = 'card-container';
+
+        //make each student a card
+        container.classList.add('card', 'card-container');
+
 
         // Iterate through each student in studentList
         studentList.forEach(function (student, studentIndex) {
-            const studentDiv = document.createElement('div');
-            studentDiv.className = 'student';
+            // Create a card for each student
+            const studentCard = document.createElement('div');
+            studentCard.className = 'card mb-3'; // Add margin-bottom for spacing between cards
 
-            // Create a header for the student with Name and ID
-            const studentHeader = document.createElement('h3');
+            // Create a header for the student card with Name and ID
+            const studentHeader = document.createElement('h5');
+            studentHeader.className = 'card-header';
             studentHeader.textContent = `${student['First Name'][0]} ${student['Last Name'][0]}, ID: ${student['ID'][0]}`;
-            studentDiv.appendChild(studentHeader);
+            studentCard.appendChild(studentHeader);
+
+            // Create a body for the student card
+            const studentCardBody = document.createElement('div');
+            studentCardBody.className = 'card-body';
 
             // Create an unordered list for displaying competencies and grades
             const competencyList = document.createElement('ul');
             var bucketScores = [];
+
             // Iterate through each competency in the student
             for (const competencyName in student) {
                 if (competencyName !== 'First Name' && competencyName !== 'Last Name' && competencyName !== 'ID') {
                     const competencyGrades = student[competencyName];
                     var bucket = competencyToBucket[competencyName];
                     const competencyItem = document.createElement('li');
+                    competencyItem.className = 'list-group list-group-flush';
                     var avg = calculateAverage(competencyGrades);
-                    
-                    if(bucket!== undefined)
-                    {
-                    var currentBucket = bucketScores.find(m=>m.bucketName==bucket);
-                    //console.log({currentBucket:currentBucket});
-                    //console.log({bucket:bucket});
-                    //console.log({bucketScores:bucketScores});
-                    //console.log("__________");
-                    if(currentBucket === null || currentBucket === undefined){
-                        bucketScores.push({
-                            bucketName:bucket,
-                            scores:[avg],
-                        })
-                    } else{
-                        currentBucket.scores.push(avg);
 
-                    }
-                    //console.log({currentBucket_2:currentBucket});
-                    //console.log({bucketScores_2:bucketScores});
-                    //console.log("__________");
+                    if (bucket !== undefined) {
+                        var currentBucket = bucketScores.find(m => m.bucketName == bucket);
+                        if (currentBucket === null || currentBucket === undefined) {
+                            bucketScores.push({
+                                bucketName: bucket,
+                                scores: [avg],
+                            });
+                        } else {
+                            currentBucket.scores.push(avg);
+                        }
                     }
 
-                    //console.log({student_competencyToBucket:competencyToBucket});
                     competencyItem.textContent = `${competencyName}: ${competencyGrades.join(', ')} (Average: ${avg})`;
                     competencyList.appendChild(competencyItem);
                 }
             }
+
             const uniqueBuckets = new Set(Object.values(competencyToBucket)).size;
-            //console.log('Number of Buckets:', uniqueBuckets);
-            //console.log({student:student});
+
             // Add the "Bucket Grade" item
-            for (let i = 0; i < uniqueBuckets; i++){
-            const bucketGradeItem = document.createElement('li');
-            var currentName = `Bucket ${i+1}`;
-            var currentBuckett = bucketScores.find(m=>m.bucketName === currentName);
-            
-            if(currentBuckett === undefined){
-                bucketGradeItem.textContent = `Bucket ${i+1} = ${0}`;
-            }
-            else{
-                //console.log({summary_bucketScores:currentName});
-                //console.log({summary_bucketScores:bucketScores});
-                //console.log({summary_bucketScores:currentBuckett});
-                //console.log({summary_bucketScores_scores:currentBuckett.scores});
-            var scores = currentBuckett.scores;
-            var scoreCount = scores.length;
-            //JS loop basically saying var current total = 0, and then doing current total = currenttotal +=score
-            var scoreTotal = scores.reduce((pv,cv)=> parseFloat(pv)+parseFloat(cv),0);
-        
+            for (let i = 0; i < uniqueBuckets; i++) {
+                const bucketGradeItem = document.createElement('li');
+                bucketGradeItem.className = 'list-group list-group-flush';
+                var currentName = `Bucket ${i + 1}`;
+                var currentBuckett = bucketScores.find(m => m.bucketName === currentName);
 
-            var scoreAVG = (scoreTotal ?? 0)/(scoreCount ?? 1);
-                //console.log({summary_total:scoreTotal});
-                //console.log({summary_total:scoreAVG});
-            bucketGradeItem.textContent = `Bucket ${i+1} = ${scoreAVG}`;
-            }
-            
-            competencyList.appendChild(bucketGradeItem);
-            }
-            studentDiv.appendChild(competencyList);
-            container.appendChild(studentDiv);
-        });
-// Create an array to store the student data
-var fullStudentList = [];
-
-// Iterate through each student in the studentList
-studentList.forEach(function (student, studentIndex) {
-    // Create an unordered list for displaying competencies and grades
-    var bucketScores = [];
-
-    // Iterate through each competency in the student
-    for (const competencyName in student) {
-        if (competencyName !== 'First Name' && competencyName !== 'Last Name' && competencyName !== 'ID') {
-            const competencyGrades = student[competencyName];
-            var bucket = competencyToBucket[competencyName];
-            var avg = calculateAverage(competencyGrades);
-
-            if (bucket !== undefined) {
-                var currentBucket = bucketScores.find(m => m.bucketName == bucket);
-
-                if (currentBucket === null || currentBucket === undefined) {
-                    bucketScores.push({
-                        bucketName: bucket,
-                        scores: [avg],
-                    });
+                if (currentBuckett === undefined) {
+                    bucketGradeItem.textContent = `Bucket ${i + 1} = ${0}`;
                 } else {
-                    currentBucket.scores.push(avg);
+                    var scores = currentBuckett.scores;
+                    var scoreCount = scores.length;
+                    var scoreTotal = scores.reduce((pv, cv) => parseFloat(pv) + parseFloat(cv), 0);
+                    var scoreAVG = (scoreTotal ?? 0) / (scoreCount ?? 1);
+                    bucketGradeItem.textContent = `Bucket ${i + 1} = ${scoreAVG}`;
                 }
+
+                competencyList.appendChild(bucketGradeItem);
+
             }
-        }
+
+            // Append the competency list to the student card body
+            studentCardBody.appendChild(competencyList);
+
+            // Append the student card body to the student card
+            studentCard.appendChild(studentCardBody);
+
+            // Append the student card to the container
+            container.appendChild(studentCard);
+
+            // Update the student object with bucket scores
+            student.bucketScores = bucketScores; // Add bucketScores to the student object
+            document.body.appendChild(container);
+
+        });
+
+        // Save the updated student list to Chrome storage
+        chrome.storage.local.set({ 'fullStudentList': studentList }, function () {
+            console.log('The full student list with bucket scores has been saved to Chrome storage.');
+        });
+        chrome.storage.local.get(['fullStudentList'], function (result) {
+    const fullStudentList = result.fullStudentList;
+    if (fullStudentList && fullStudentList.length > 0) {
+        console.log('Full Student List with Bucket Scores:');
+        fullStudentList.forEach(function (student, index) {
+            console.log(`Student ${index + 1}:`, student);
+        });
+    } else {
+        console.log('The full student list is empty or not found.');
     }
-
-    const uniqueBuckets = new Set(Object.values(competencyToBucket)).size;
-
-    // Add the "Bucket Grade" item
-    for (let i = 0; i < uniqueBuckets; i++) {
-        const bucketGradeItem = document.createElement('li');
-        var currentName = `Bucket ${i + 1}`;
-        var currentBuckett = bucketScores.find(m => m.bucketName === currentName);
-        if (currentBuckett !== undefined) {
-            var scores = currentBuckett.scores;
-            var scoreCount = scores.length;
-            //JS loop basically saying var current total = 0, and then doing current total = currenttotal +=score
-            var scoreTotal = scores.reduce((pv, cv) => parseFloat(pv) + parseFloat(cv), 0);
-
-            var scoreAVG = (scoreTotal ?? 0) / (scoreCount ?? 1);
-        }
-    }
-
-    // Push the current student object into the fullStudentList array
-    fullStudentList.push(student);
 });
 
-// Append the container to the body
-document.body.appendChild(container);
 
-// Save the fullStudentList to Chrome storage
-chrome.storage.local.set({ 'fullStudentList': fullStudentList }, function () {
-    console.log('The full student list has been saved to Chrome storage.');
-});    
     } else {
         // Display a message if no student data is found
         const noStudentDataMessage = document.createElement('p');
@@ -255,7 +261,7 @@ function calculateAverage(grades) {
     if (grades.length === 0) {
         return 'N/A';
     }
-    
+
     const sum = grades.reduce((total, grade) => total + parseFloat(grade), 0);
     return (sum / grades.length).toFixed(2);
 }
@@ -264,9 +270,9 @@ function calculateAverage(grades) {
 
 
 function convertStudentListToCSV(studentList) {
-    // Start with the header row, which includes ID, First Name, Last Name, and dynamic competency headers
+    // Start with the header row, which includes ID, First Name, Last Name, dynamic competency headers, and bucket headers
     let headers = ['ID', 'First Name', 'Last Name'];
-    // Assuming all students have the same competencies, use the first student to extract the competency names
+    // Assuming all students have the same competencies and buckets, use the first student to extract the competency names and bucket names
     if (studentList.length > 0) {
         for (const key in studentList[0]) {
             if (key.startsWith('Competency')) {
@@ -274,7 +280,19 @@ function convertStudentListToCSV(studentList) {
             }
         }
     }
-    let csvContent = headers.join(',') + '\r\n';
+
+    // Add bucket headers
+    let uniqueBucketNames = new Set();
+    studentList.forEach(student => {
+        if (student.bucketScores) {
+            student.bucketScores.forEach(score => {
+                uniqueBucketNames.add(score.bucketName);
+            });
+        }
+    });
+    let bucketHeaders = Array.from(uniqueBucketNames);
+
+    let csvContent = headers.concat(bucketHeaders).join(',') + '\r\n';
 
     // Iterate through each student to create a row
     studentList.forEach(student => {
@@ -284,11 +302,24 @@ function convertStudentListToCSV(studentList) {
         const lastName = student['Last Name'][0]; // Assuming Last Name is an array, we take the first element
         let row = `${id},${firstName},${lastName},`;
 
-        // Extract the competencies and grades
+        // Extract the competencies grades
         headers.slice(3).forEach(header => {
-            const grades = student[header];
-            // Join all grades for the current competency into a single string
-            row += `"${grades.join('|')}",`; // We use '|' to separate individual grades within a competency
+            if (student.hasOwnProperty(header)) {
+                const grades = student[header];
+                row += `"${grades.join('|')}",`; // Join all grades for the current competency into a single string
+            } else {
+                row += ','; // Add an empty cell if the student doesn't have a grade for the competency
+            }
+        });
+
+        // Fill the bucket columns with scores
+        bucketHeaders.forEach(bucketName => {
+            const score = student.bucketScores.find(score => score.bucketName === bucketName);
+            if (score) {
+                row += `"${score.scores[0]}",`; // Add the score of the bucket to the row
+            } else {
+                row += ','; // Add an empty cell if the student doesn't have a score for the bucket
+            }
         });
 
         // Remove the last comma and add a newline character
@@ -300,13 +331,13 @@ function convertStudentListToCSV(studentList) {
 
 
 
-  
-  function saveDataToChromeStorage(csvData) {
-    chrome.storage.local.set({ 'exportedCSV': csvData }, function() {
+
+function saveDataToChromeStorage(csvData) {
+    chrome.storage.local.set({ 'exportedCSV': csvData }, function () {
         console.log('CSV data has been saved to Chrome storage.');
-        
+
     });
-    
+
 }
 
 // Add this script at the end of your HTML, just before the closing </body> tag.
@@ -314,8 +345,8 @@ function convertStudentListToCSV(studentList) {
 // Define a function to handle the button click event
 function handleExportButtonClick() {
     console.log('Button clicked!');
-   
-    
+
+
 }
 
 
@@ -333,19 +364,19 @@ function handleExportButtonClick() {
 // Define the exportStudentsToCSV function
 function exportStudentsToCSV() {
     // Retrieve fullStudentList from Chrome storage
-    chrome.storage.local.get(['fullStudentList'], function(result) {
+    chrome.storage.local.get(['fullStudentList'], function (result) {
         const fullStudentList = result.fullStudentList;
-        
+
         // Check if fullStudentList is defined and not empty
         if (fullStudentList && fullStudentList.length > 0) {
             // Use the fullStudentList variable here
             const csvData = convertStudentListToCSV(fullStudentList);
-                // Log the generated CSV data
-                console.log('Generated CSV data:');
-                console.log(csvData);
-                downloadCSV(csvData, 'StudentList.csv'); // Trigger the file download
-// Make sure the exportToCSV function from the previous explanation is also included in this file
-    
+            // Log the generated CSV data
+            console.log('Generated CSV data:');
+            console.log(csvData);
+            downloadCSV(csvData, 'StudentList.csv'); // Trigger the file download
+            // Make sure the exportToCSV function from the previous explanation is also included in this file
+
             // ...
         } else {
             console.error('Full student list not found in Chrome storage.');
@@ -353,10 +384,10 @@ function exportStudentsToCSV() {
     });
 }
 // Assuming you're using "studentList.html" as your popup HTML
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log('DOMContentLoaded event fired');
     const exportBtn = document.getElementById('export-csv-btn');
-    
+
     // Update the event listener to target the button in "studentList.html"
     if (exportBtn) {
         exportBtn.addEventListener('click', exportStudentsToCSV);

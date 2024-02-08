@@ -1,29 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chart Page</title>
     <script src="/Script/studentList.js"></script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-   
-</head>
-<body>
-    <style>
-        /* Set the width and height of the popup */
-        body {
-            width: 500px; /* Specify the width in pixels or percentage */
-            height: 800px; /* Specify the height in pixels or percentage */
-        }
-    </style>
-    <h1>Student List Sorted by Competency</h1>
-    <button class="btn btn-primary" id="export-csv-btn">Export to CSV</button>
-    <div id="studentList"></div>
-    <div id="navigation-container">
-        <!-- Use a form to navigate to Graph.html -->
-        <form action="/Views/Graph.html" method="POST">
-            <input type="submit" value="View Graph" />
-        </form>
+    <div class="card card-container">
+        <div class="card-body">
+
+            <button class="btn btn-primary" id="export-csv-btn">Export to CSV</button>
+            <a href="/Views/Graph.html" class="btn btn-primary">View Graph</a>
+        </div>
     </div>
+</head>
+
+
+<style>
+    /* Set the width and height of the popup */
+    body {
+        width: flex;
+        min-width: 400px;
+        /* Specify the width in pixels or percentage */
+        height: flex;
+        /* Specify the height in pixels or percentage */
+        background-color: #6b9dd2;
+    }
+
+    /* Custom styling for the cards */
+    .card-container {
+        width: fit-content;
+        min-width: 500px;
+        margin: 20px;
+        padding: 20px;
+    }
+    
+</style>
+
+
+<body>
+    <!-- Use a form to navigate to Graph.html -->
+
+    <div id="studentList"></div>
+
+
+
+
 </body>
+
 </html>

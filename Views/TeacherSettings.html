@@ -9,10 +9,34 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <style>
-        /* Set the width and height of the popup */
-        body {
-            width: 500px; /* Specify the width in pixels or percentage */
-            height: 800px; /* Specify the height in pixels or percentage */
+    body {
+    width: flex; /* Let the width be flexible based on content */
+    min-width: 400px; /* Minimum width of 400px */
+    height: flex;
+    margin: 0; /* Remove default margin */
+    
+    background-color: #6b9dd2; /* Background color */
+    overflow-x: scroll; /* Force horizontal scrollbar when content exceeds viewport width */
+}
+
+        /* Custom styling for the cards */
+        .card-container {
+            width:fit-content;
+            min-width: 500px;
+            margin: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* Custom styling for the h2 */
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Custom styling for the buttons */
+        .btn-custom {
+            width: 100%;
         }
     </style>
     <title>Chrome Extension Options</title>
@@ -20,19 +44,28 @@
 
 <body>
     <div class="container mt-3">
-        <h2>Teacher Settings</h2>
-        <!-- Display the table here -->
-        <div id="tableContainer">
-            <!-- The table will be generated here -->
+        <!-- Teacher Settings Card -->
+        <div class="card card-container">
+            <div class="card-body">
+                <h2 class="section-title">Teacher Settings</h2>
+                <!-- Display the table here -->
+                <div id="tableContainer">
+                    <!-- The table will be generated here -->
+                </div>
+                <form id="settingsForm" action="/Views/studentList.html" method="POST">
+                    <!-- Button to show competencies in buckets and log them -->
+                    <button id="showCompetenciesButton" class="btn btn-primary btn-custom">Show Competencies</button>
+                </form>
+            </div>
         </div>
-    </div>
-    <!-- Include your external JavaScript file -->
 
-    <!-- Form to submit competencies and buckets to the next page -->
-    <form id="settingsForm" action="/Views/studentList.html" method="POST">
-        <!-- Button to show competencies in buckets and log them -->
-        <button id="showCompetenciesButton" class="btn btn-primary">Show Competencies</button>
-    </form>
+        <!-- Form Card to Submit Competencies and Buckets -->
+
+
+
+
+
+    </div>
 
 </body>
 
