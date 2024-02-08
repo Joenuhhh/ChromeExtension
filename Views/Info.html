@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            height: flex;
+            width: flex;
+        }
+
+        /* Custom styling for the card */
+        .card-info {
+            min-width: 400px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            /* Card background color */
+            position: relative;
+            /* Position relative for absolute positioning of the back button */
+            padding: 20px;
+        }
+
+        /* Custom styling for the back button */
+        .back-button {
+            background-color: transparent;
+            border: none;
+            color: rgb(115, 131, 129);
+            font-size: 18px;
+            padding: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .back-button:hover{
+            text-decoration: none;
+            color: rgb(106, 189, 189);
+        }
+
+        /* Custom styling for the YouTube button */
+        .youtube-button {
+            font-weight: bold;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #ff0000;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .youtube-button:hover {
+            background-color: #d7a8a8;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        /* Custom styling for the GitHub button */
+        .github-button {
+            font-weight: bold;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #000;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .github-button:hover {
+            background-color: #666;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .Disclaimer {
+            font-size: 14px;
+            color: gray;
+        }
+
+        .Disclaimer h2 {
+            font-size: 18px;
+            color: black;
+        }
+
+    </style>
+    <title>Info Page</title>
+</head>
+
+<body>
+    <div class="container mt-3">
+        <div class="card card-info">
+            <!-- Dummy Info -->
+            <h4 class="text-center">Important Info and Help</h4>
+            <br>
+            <p class="text-center">This tool was designed to be an aid for teachers who need a more efficient way to
+                organize their students' grades and progress. Attached here are some important links to get you started.
+            </p>
+            <!-- YouTube Button -->
+            <a href="https://www.youtube.com/watch?v=_t1-euAHRn8&ab_channel=JonahBillerbeck" class="youtube-button"
+                target="_blank">YouTube Demo</a>
+            <!-- GitHub Button -->
+            <a href="https://github.com/Joenuhhh/ChromeExtension" class="github-button" target="_blank">GitHub
+                Documentation</a>
+            <br>
+            <br>
+            <div class="Disclaimer">
+                <h2>Disclaimer:</h2>
+                <p>This tool is designed for educational purposes only. All information presented within this application is intended solely for use by authorized teachers and administrators. Access to student information is restricted to individuals with valid credentials to log in.</p>
+                <p>Please note that all information accessed through this tool is stored locally within the user's browser and is not transmitted or made public at any time. We take privacy and data security seriously, and measures have been implemented to ensure the confidentiality and protection of student data.</p>
+                <p>Unauthorized access to student information or misuse of this application is strictly prohibited and will be reported without exception.</p>
+                <p>By using this application, you agree to abide by the terms and conditions outlined in our privacy policy and to use the information obtained responsibly and in accordance with applicable laws and regulations.</p>
+            </div>
+            <p>Current Version: <span id="version"></span></p>
+            <!-- Back Button -->
+            <a href="popup.html" class="back-button">Back to main page.</a>
+        </div>
+    </div>
+
+    <!-- Include your JavaScript file -->
+    <script src="/Script/RenderVersion.js"></script>
+</body>
+
+</html>

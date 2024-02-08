@@ -11,11 +11,14 @@
     <style>
         /* Set the width and height of the popup */
         body {
-            width: 425px; /* Specify the width in pixels or percentage */
-            height: 400px; /* Specify the height in pixels or percentage */
-            background-color: #6b9dd2; /* Professional blue color */
+            width: 425px;
+            /* Specify the width in pixels or percentage */
+            height: 400px;
+            /* Specify the height in pixels or percentage */
+            background-color: #6b9dd2;
+            /* Professional blue color */
         }
-        
+
         /* Custom styling for the card */
         .card-form {
             max-width: 400px;
@@ -23,7 +26,10 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            background-color: white; /* Form background color */
+            background-color: white;
+            /* Form background color */
+            position: relative;
+            /* Add position relative to allow absolute positioning of the info button */
         }
 
         /* Custom styling for the h2 */
@@ -33,6 +39,32 @@
             text-align: center;
             margin-bottom: 20px;
         }
+
+        .info-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: none;
+            color: gray;
+            font-size: 14px;
+            padding: 0;
+            cursor: pointer;
+            width: 30px;
+            /* Set width */
+            height: 30px;
+            /* Set height */
+            border-radius: 50%;
+            /* Make it circular */
+            line-height: 30px;
+            /* Center the text vertically */
+        }
+
+
+        .info-button:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            /* Change the background color on hover */
+        }
     </style>
     <title>Settings Input</title>
 </head>
@@ -40,6 +72,9 @@
 <body>
     <div class="container mt-3">
         <div class="card card-form">
+            <!-- Info Button -->
+            <a href="info.html" class="btn btn-info info-button">Info</a>
+
             <h2 class="form-title">Teacher Settings</h2>
             <form id="settingsForm" action="TeacherSettings.html" method="GET">
                 <!-- Number of Competencies -->
@@ -49,7 +84,8 @@
                 </div>
                 <div class="form-group">
                     <label for="competencies">Number of Competencies (Max 15):</label>
-                    <input type="number" id="competencies" name="competencies" class="form-control" min="1" max="15" required>
+                    <input type="number" id="competencies" name="competencies" class="form-control" min="1" max="15"
+                        required>
                 </div>
 
                 <!-- Number of Buckets -->
