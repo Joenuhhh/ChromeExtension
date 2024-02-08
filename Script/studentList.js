@@ -55,7 +55,7 @@ chrome.storage.local.get(['bucketData'], function (result) {
             const subCard = document.createElement('div');
             subCard.className = 'card mb-3';
             const subCardBody = document.createElement('div');
-            subCardBody.className = 'card-body';
+            subCardBody.className = 'card';
 
             // Create a header for the bucket
             const bucketHeader = document.createElement('h5');
@@ -65,13 +65,13 @@ chrome.storage.local.get(['bucketData'], function (result) {
 
             // Create a list for competencies in the bucket
             const competencyList = document.createElement('ul');
-            competencyList.className = 'list-group list-group-flush';
+            //competencyList.className = 'list-group list-group-flush';
 
             // Add each competency to the list
             bucketCompetencies.forEach(competency => {
                 const listItem = document.createElement('li');
                 listItem.textContent = competency;
-                listItem.className = 'list-group-item';
+                listItem.className = 'list-group list-group-flush';
                 competencyList.appendChild(listItem);
             });
 
@@ -127,12 +127,12 @@ chrome.storage.local.get(['studentList', 'competencyToBucket', 'bucketData'], fu
     // Check if studentList exists and has data
     if (studentList && studentList.length > 0) {
         // Create a container div to display student data
-        const container = document.createElement('card', 'card-container');
+        const container = document.createElement('div');
 
         container.className = 'card-container';
 
         //make each student a card
-        container.classList.add('card', 'card-container');
+        container.classList.add('student');
 
 
         // Iterate through each student in studentList
