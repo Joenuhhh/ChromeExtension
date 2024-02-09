@@ -6,20 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chart Page</title>
     <script src="/Script/studentList.js"></script>
+    <script src="/Script/Search.js"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <div class="card card-container">
-        <div class="card-header">
-            <h2>External Resources</h2>
-            </div>
-        <div class="card-body">
-
-            <button class="btn btn-primary" id="export-csv-btn">Export to CSV</button>
-            <a href="/Views/Graph.html" class="btn btn-primary">View Graph</a>
-        </div>
-    </div>
 </head>
-
 
 <style>
     /* Set the width and height of the popup */
@@ -37,19 +27,43 @@
         width: fit-content;
         min-width: 500px;
         margin: 20px;
-        
     }
-    
+
+    /* Style for search bar */
+    .search-bar {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .search-input {
+        flex: 1;
+        margin-right: 10px;
+    }
+    /* CSS styles to highlight matched elements */
+.highlight {
+    background-color: yellow;
+}
+
 </style>
 
-
 <body>
+    <div class="card card-container">
+        <div class="card-header">
+            <h2>External Resources</h2>
+        </div>
+        <div class="card-body">
+            <!-- Search bar -->
+            <div class="search-bar">
+                <input type="text" class="form-control search-input" id="searchInput" placeholder="Search a student here...">
+                <button class="btn btn-primary" id="searchBtn">Search</button>
+            </div>
+            <button class="btn btn-primary" id="export-csv-btn">Export to CSV</button>
+            <a href="/Views/Graph.html" class="btn btn-primary">View Graph</a>
+        </div>
+    </div>
     <!-- Use a form to navigate to Graph.html -->
-
     <div id="studentList"></div>
-
-
-
 
 </body>
 

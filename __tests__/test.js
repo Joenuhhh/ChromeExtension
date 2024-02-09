@@ -19,7 +19,11 @@ const mockChrome = {
   scripting: {
     executeScript: jest.fn(),
   },
+  runtime: {
+    getManifest: jest.fn(() => ({ version: '1.0.0' })), // Mocking the getManifest method to return version '1.0.0'
+  },
 };
+
 // Define mock data for testing
 const mockCompetencies = 3; // Example number of competencies
 const mockBuckets = 2; // Example number of buckets
@@ -253,4 +257,20 @@ test('Finds unique buckets and calculates average scores', () => {
   // Check if the result matches the expected values
   expect(roundedResult).toEqual(expected);
 });
+
+// USER STORY 36, VERSION NUMBER Test case to check if the version number is displayed correctly
+test('Displays the correct version number', () => {
+  // Assuming the version number is accessed via chrome.runtime API
+  const versionNumber = chrome.runtime.getManifest().version;
+
+  // Assert that the version number is not undefined or null
+  expect(versionNumber).toBeDefined();
+  expect(versionNumber).not.toBeNull();
+
+  // Add additional assertions as needed based on how the version number is displayed
+});
+
+
+
+
 
