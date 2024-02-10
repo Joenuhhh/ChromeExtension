@@ -5,11 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy</title>
+    <script src="/Script/lightDark.js"></script>
+    <link rel="stylesheet" href="lightdark.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
         body {
             height: flex;
             width: flex;
+        }
+
+        /* Light mode specific styles */
+        .light-mode .card-info {
+            background-color: #FFFFFF;
+            /* White background for light mode */
+            color: #333333;
+            /* Dark text color for readability in light mode */
+            /* other styles for light mode */
+        }
+
+        .dark-mode h2,
+        .dark-mode h3,
+        .dark-mode h4,
+        .dark-mode h5 {
+            color: #c0c0c0;
+        }
+
+        /* Dark mode specific styles */
+        .dark-mode .card-info {
+            background-color: #495057;
+            /* Dark background for dark mode */
+            color: #FFFFFF;
+            /* White text color for readability in dark mode */
+            /* other styles for dark mode */
+        }
+
+        .dark-mode .Disclaimer {
+            color: #a39e9e;
         }
 
         /* Custom styling for the card */
@@ -26,15 +57,17 @@
         }
 
         /* Custom styling for the back button */
-        .back-button {
+       /* Custom styling for the back button */
+       .back-button {
             background-color: transparent;
             border: none;
-            color: gray;
-            font-size: 18px;
+            color: rgb(115, 131, 129);
+            font-size: 14px;
             padding: 0;
             cursor: pointer;
             text-decoration: none;
         }
+
 
         .Disclaimer {
             font-size: 14px;
@@ -46,7 +79,7 @@
         .Disclaimer h4,
         .Disclaimer h5 {
             font-size: 18px;
-            color: black;
+
         }
 
         .Disclaimer ul {
@@ -108,9 +141,10 @@
                     <p>If you have any questions or concerns about our privacy policy or data practices, please contact
                         us at <a href="mailto:Jonnahha@email.com">Jonnahha@email.com</a>.</p>
                 </div>
+
+                <!-- Back to Info.html Button -->
+                <a href="Info.html" class="back-button">&#8592; Back to Info Page</a>
             </div>
-            <!-- Back to Info.html Button -->
-            <a href="Info.html" class="back-button">&#8592; Back to Info Page</a>
         </div>
     </div>
 </body>

@@ -1,0 +1,299 @@
+/* Light mode styles */
+body.light-mode {
+    background-color: #f4f4f4;
+    color: #333;
+}
+.card.light-mode {
+    background-color: #ddd;
+    color: #333;
+}
+.card.card-form.light-mode {
+    background-color: #fff; /* Light gray background */
+    color: #000; /* Black text color */
+}
+
+.card.card-form.light-mode .form-title {
+    color: #000; /* Form title color */
+}
+
+.card.card-form.light-mode .form-group label {
+    color: #000; /* Form label color */
+}
+
+.info-button.light-mode {
+    color: gray;
+}
+.card.light-mode h4,
+.card.light-mode p {
+    color: #333; /* Ensure text color remains black */
+}
+
+.card-info.light-mode {
+    background-color: #fff;
+    color: #333;
+}
+
+.card-info.light-mode h4,
+.card-info.light-mode p {
+    color: #333; /* Ensure text color remains black */
+}
+
+.back-button.light-mode {
+    color: rgb(115, 131, 129);
+}
+
+.back-button.light-mode:hover {
+    color: rgb(106, 189, 189);
+}
+
+.youtube-button.light-mode {
+    background-color: #ff0000;
+    color: #fff;
+}
+
+.youtube-button.light-mode:hover {
+    background-color: #d7a8a8;
+}
+
+.github-button.light-mode {
+    background-color: #000;
+    color: #fff;
+}
+
+.github-button.light-mode:hover {
+    background-color: #666;
+}
+
+.Disclaimer.light-mode {
+    color: gray;
+}
+
+.Disclaimer.light-mode h2 {
+    color: black;
+}
+.btn.btn-primary.light-mode {
+    background-color: #007bff; /* Primary button color in light mode */
+    color: #fff; /* Text color for primary button in light mode */
+}
+/* Light mode styles for .form-control */
+body.light-mode .form-control {
+    background-color: #fff; /* Background color */
+    color: #495057; /* Text color */
+    border-color: #ced4da; /* Border color */
+}
+
+
+
+.btn.btn-primary.light-mode:hover {
+    background-color: #0056b3; /* Hover color for primary button in light mode */
+}
+.card-form.light-mode {
+    background-color: white;
+    color: #000;
+}
+
+.info-button.light-mode {
+    color: gray;
+}
+
+.toggle-switch.light-mode .toggle-slider {
+    background-color: #ccc;
+}
+
+.toggle-switch.light-mode input[type="checkbox"]:checked + .toggle-slider {
+    background-color: #2196F3;
+}
+
+.toggle-switch.light-mode input[type="checkbox"]:checked + .toggle-slider:before {
+    transform: translateX(26px);
+}
+
+/* Light mode styles for .card-container */
+body.light-mode .card-container {
+    background-color: #fff; /* Background color */
+    color: #333; /* Text color */
+}
+/* Light mode styles for .container.mt-3 */
+body.light-mode .container.mt-3 {
+    background-color: #f4f4f4; /* Background color */
+    color: #333; /* Text color */
+}
+
+/* Dark mode styles for .container.mt-3 */
+body.dark-mode .container.mt-3 {
+    background-color: #626161; /* Background color */
+    color: #464141; /* Text color */
+}
+
+/* Dark mode styles for .card-container */
+body.dark-mode .card-container {
+    background-color: #626161; /* Background color */
+    color: #615f5f; /* Text color */
+}
+
+
+
+/* Light mode styles for settingsForm */
+body.light-mode #settingsForm {
+    background-color: #fff; /* Background color */
+    color: #000; /* Text color */
+    
+}
+
+
+
+
+/* Light mode styles for form */
+body.light-mode form {
+    background-color: #fff; /* Background color */
+    color: #495057; /* Text color */
+}
+
+
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #626161;
+    color: #464141;
+}
+
+
+.card.card-form.dark-mode .form-title {
+    color: #fff; /* Form title color */
+}
+
+.card.card-form.dark-mode .form-group label {
+    color: #fff; /* Form label color */
+}
+
+.info-button.dark-mode {
+    color: #ccc;
+}
+
+
+.card.dark-mode h4,
+.card.dark-mode p {
+    color: #fff; /* Ensure text color remains white */
+}
+.card-info.dark-mode {
+    background-color: #626161;
+    color: #615f5f;
+}
+/* Light mode styles */
+body.light-mode .card-body {
+    background-color: #ffffff; /* White background */
+    color: #333333; /* Dark text color for readability */
+    border: 1px solid #dddddd; /* Slight border to define the edge of the card */
+}
+
+/* Additional light mode styles for card components */
+body.light-mode .card-body .card-title {
+    color: #333333; /* Dark color for the title text */
+}
+
+body.light-mode .card-body .card-text {
+    color: #555555; /* Slightly lighter color for the body text */
+}
+
+/* Dark mode styles */
+body.dark-mode .card-body {
+ 
+    color: #dddddd; /* Light text color for readability */
+
+}
+
+/* Additional dark mode styles for card components */
+body.dark-mode .card-body .card-title {
+    color: #ffffff; /* White color for the title text */
+}
+
+body.dark-mode .card-body .card-text {
+    color: #cccccc; /* Slightly lighter color for the body text */
+}
+.card-info.dark-mode{
+    background-color: #444444;
+    color: #444444;
+}
+.card-info.dark-mode h4,
+.card-info.dark-mode p {
+    color: #555252; /* Ensure text color remains white */
+}
+
+.back-button.dark-mode {
+    color: #bbb;
+}
+
+.back-button.dark-mode:hover {
+    color: #9dd1d1;
+}
+
+.youtube-button.dark-mode {
+    background-color: #880000;
+    color: #fff;
+}
+
+.youtube-button.dark-mode:hover {
+    background-color: #775757;
+}
+/* Light mode styles for submit button */
+body.light-mode button[type="submit"] {
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Add border radius */
+    padding: 8px 16px; /* Add padding */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+/* Dark mode styles for submit button */
+body.dark-mode button[type="submit"] {
+    background-color: #6c757d; /* Button background color */
+    color: #fff; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Add border radius */
+    padding: 8px 16px; /* Add padding */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.github-button.dark-mode {
+    background-color: #222;
+    color: #fff;
+}
+
+.github-button.dark-mode:hover {
+    background-color: #444;
+}
+
+.Disclaimer.dark-mode {
+    color: #bbb;
+}
+
+.Disclaimer.dark-mode h2 {
+    color: #fff;
+}
+
+
+
+.info-button.dark-mode {
+    color: #ccc;
+}
+
+.toggle-switch.dark-mode .toggle-slider {
+    background-color: #555;
+}
+
+.toggle-switch.dark-mode input[type="checkbox"]:checked + .toggle-slider {
+    background-color: #333;
+}
+
+.toggle-switch.dark-mode input[type="checkbox"]:checked + .toggle-slider:before {
+    transform: translateX(26px);
+}
+.btn.btn-primary.dark-mode {
+    background-color: #4e73df; /* Primary button color in dark mode */
+    color: #fff; /* Text color for primary button in dark mode */
+}
+
+.btn.btn-primary.dark-mode:hover {
+    background-color: #224abe; /* Hover color for primary button in dark mode */
+}

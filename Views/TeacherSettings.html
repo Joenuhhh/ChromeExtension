@@ -6,38 +6,139 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/Script/teacher-settings.js"></script>
+    <script src="/Script/lightDark.js"></script>
+    <link rel="stylesheet" href="lightdark.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <style>
-    body {
-    width: flex; /* Let the width be flexible based on content */
-    min-width: 400px; /* Minimum width of 400px */
-    height: flex;
-    margin: 0; /* Remove default margin */
-    
-    background-color: #6b9dd2; /* Background color */
-    overflow-x: scroll; /* Force horizontal scrollbar when content exceeds viewport width */
-}
+       body {
+        width: flex;
+        min-width: 400px;
+        height: flex;
+        margin: 0;
+        overflow-x: scroll;
+    }
 
-        /* Custom styling for the cards */
-        .card-container {
-            width:fit-content;
-            min-width: 500px;
-            margin: 5px;
-            margin-bottom: 10px;
-        }
+    /* Custom styling for the cards */
+    .card-container {
+        width: fit-content;
+        min-width: 500px;
+        margin: 5px;
+        margin-bottom: 10px;
+    }
 
-        /* Custom styling for the h2 */
-        .section-title {
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-        }
+    /* Custom styling for the h2 */
+    .section-title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+    }
 
-        /* Custom styling for the buttons */
-        .btn-custom {
-            width: 100%;
+    /* Custom styling for the buttons */
+    .btn-custom {
+        width: 100%;
+    }
+
+    /* Light mode styles */
+    body.light-mode {
+        background-color: #f4f4f4; /* Light background for light mode */
+        color: #333; /* Dark text color for readability in light mode */
+    }
+
+    body.light-mode .card {
+        background-color: #fff; /* Light background for cards in light mode */
+        color: #333; /* Dark text color for cards in light mode */
+    }
+
+    body.light-mode .btn-primary {
+        background-color: #be89df; /* Blue background for primary buttons in light mode */
+        color: #fff; /* White text color for primary buttons in light mode */
+        border: none;
+    }
+    body.light-mode .btn-primary:hover {
+        background-color: #ab4fe4; /* Blue background for primary buttons in light mode */
+        color: #fff; /* White text color for primary buttons in light mode */
+        border: none;
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+         /* Dark background for dark mode */
+         
+        color: #f8f9fa; /* Light text color for readability in dark mode */
+    }
+
+    body.dark-mode .card {
+        background-color: #495057;
+       
+        color: #ced4da; /* Light text color for cards in dark mode */
+        border-radius: 10px;
+        
+    }
+
+    body.dark-mode .btn-primary {
+        background-color: #626161; /* Green background for primary buttons in dark mode */
+        color: #ced4da; /* White text color for primary buttons in dark mode */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: transparent;
+    }
+    body.dark-mode .btn-primary:hover {
+        background-color: #515050; /* Green background for primary buttons in dark mode */
+        color: #aaadaf; /* White text color for primary buttons in dark mode */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: transparent;
+    }
+    body.light-mode table {
+        background-color: #fff; /* White background for tables in light mode */
+        color: #333; /* Dark text color for tables in light mode */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    body.light-mode th,
+    body.light-mode td {
+         /* Light borders for table cells in light mode */
+        padding: 8px; /* Padding for table cells */
+        text-align: center;
+        border: transparent;
+    }
+    .card-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: transparent;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+            /* Form background color */
+            position: relative;
+            /* Add position relative to allow absolute positioning of the info button */
         }
+    body.light-mode th
+     {
+        background-color: #f2f2f2; /* Slightly grey background for table headers in light mode */
+        color: #333; /* Dark text color for table headers in light mode */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Dark mode table styles */
+    body.dark-mode table {
+        background-color: #495057;/* Dark background for tables in dark mode */
+        color: #ced4da; /* Light text color for tables in dark mode */
+    }
+
+    body.dark-mode th,
+    body.dark-mode td {
+        border: 1px solid transparent; /* Dark borders for table cells in dark mode */
+        padding: 8px; /* Padding for table cells */
+        text-align: center;
+    }
+
+    body.dark-mode th {
+        background-color: #626161; /* Even darker background for table headers in dark mode */
+        color: #f8f9fa; /* Light text color for table headers in dark mode */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
     </style>
     <title>Chrome Extension Options</title>
 </head>
@@ -47,7 +148,7 @@
         <!-- Teacher Settings Card -->
         <div class="card card-container">
             <div class="card-body">
-                <h2 class="section-title">Teacher Settings</h2>
+                <h4 class="section-title">Select What buckets have which competencies:</h4>
                 <!-- Display the table here -->
                 <div id="tableContainer">
                     <!-- The table will be generated here -->
