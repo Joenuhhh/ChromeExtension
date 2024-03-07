@@ -1,4 +1,4 @@
-import Plotly from "../node_modules/plotly.js/dist/plotly.js" // Import Plotly core module
+
 
 
 const data = [{
