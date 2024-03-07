@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Print HTML to Console",
-  "version": "2.4.2",
+  "version": "2.4.6",
   "description": "A simple Chrome extension to print the current webpage's HTML to the console",
   "permissions": ["activeTab", "scripting", "storage"],
   "host_permissions": ["<all_urls>"],
@@ -21,12 +21,14 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["/Script/teacher-settings.js", "/Script/save-settings.js", "/Script/popup.js"]
+      "js": ["Script/teacher-settings.js", "Script/save-settings.js", "Script/popup.js"]
     }
   ],
   "web_accessible_resources": [
     {
-      "resources": ["node_modules/chart.js/dist/chart.js"],
+      "resources": [
+        "dist/bundle.js" 
+      ],
       "matches": ["<all_urls>"]
     }
   ]

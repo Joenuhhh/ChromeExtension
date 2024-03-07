@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-   
-    <title>Graph Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plotly.js Graph</title>
+ 
+  <!-- Include your JavaScript file -->
+  <script type="module" src="/Script/Graph.js"></script>
+  <script src="/dist/bundle.js"></script>
 </head>
 <body>
-    <div>
-        <canvas id="myChart"></canvas>
-    </div>
-    <!-- Include Chart.js -->
-    <script type="module" src="./node_modules/chart.js/dist/chart.js"></script>
-    <!-- Include your Graph.js file -->
-    <script type="module" src="/Script/Graph.js"></script>
+  <!-- Container for the graph -->
+  <div id="chart-container" style="width: 800px; height: 400px;"></div>
 </body>
 </html>
