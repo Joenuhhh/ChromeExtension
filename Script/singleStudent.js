@@ -1,18 +1,18 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Retrieve student info from Chrome Storage
-    chrome.storage.local.get('studentList', function(data) {
-        var studentList = data.studentList;
+    // Retrieve student info from Chrome Storage using fullStudentList
+    chrome.storage.local.get('fullStudentList', function(data) {
+        var fullStudentList = data.fullStudentList;
         var studentId = localStorage.getItem('searchedStudentId');
-
-        if (studentList && studentId !== null) {
-            var student = studentList[studentId];
+        console.log(data.fullStudentList);
+        if (fullStudentList && studentId !== null) {
+            var student = fullStudentList[studentId];
             if (student) {
                 displayStudentDetails(student);
             } else {
                 displayErrorMessage("Student not found.");
             }
         } else {
-            displayErrorMessage("Student list not found in Chrome Storage.");
+            displayErrorMessage("Full student list not found in Chrome Storage.");
         }
     });
 
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var cardBody = document.createElement('div');
             cardBody.classList.add('card-body');
             for (var key in student) {
-                if (student.hasOwnProperty(key)) {
+                if (student.hasOwnProperty(key) && key !== 'bucketScores') { // Skip bucketScores for now
                     var value = student[key][0]; // Assuming each value is stored as an array with a single value
                     var infoElement = document.createElement('p');
                     infoElement.textContent = key + ": " + value;
@@ -43,12 +43,24 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
             studentInfoDiv.appendChild(cardBody);
+
+           // Display Bucket Scores separately
+if (student.hasOwnProperty('bucketScores')) {
+    var bucketScores = student['bucketScores'];
+    bucketScores.forEach(bucket => {
+        var scoresText = bucket.scores.join(', '); // Join all scores with a comma
+        var averageScore = bucket.scores.reduce((acc, score) => acc + parseFloat(score), 0) / bucket.scores.length;
+        var bucketInfoElement = document.createElement('p');
+        // Display all scores and the average
+        bucketInfoElement.textContent = `${bucket.bucketName}: Scores = [${scoresText}], Average = ${averageScore.toFixed(2)}`;
+        cardBody.appendChild(bucketInfoElement);
+    });
+}
+
         } else {
             displayErrorMessage("Element 'studentInfo' not found.");
         }
     }
-    
-    
 
     // Function to display error message on the page
     function displayErrorMessage(message) {
@@ -66,4 +78,3 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = "studentList.html";
     }
 });
-

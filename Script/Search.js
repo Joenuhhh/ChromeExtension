@@ -5,8 +5,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function scrollToSearchedName(searchText) {
-        chrome.storage.local.get('studentList', function(data) {
-            var studentList = data.studentList;
+        // Make sure the key matches the one used when storing the data
+        chrome.storage.local.get('fullStudentList', function(data) {
+            var studentList = data.fullStudentList; // Corrected to match the key
 
             if (studentList) {
                 for (var i = 0; i < studentList.length; i++) {
