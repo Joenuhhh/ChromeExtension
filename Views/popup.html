@@ -78,20 +78,18 @@
         }
 
         body.light-mode .btn-primary {
-            background-color: #007bff;
-            /* Blue background for primary buttons in light mode */
-            color: #fff;
-            /* White text color for primary buttons in light mode */
-        }
+    background-color: #be89df !important;
+    color: #fff !important;
+    border: none !important;
+}
 
-        body.light-mode .form-control {
-            background-color: #fff;
-            /* White background for form controls in light mode */
-            color: #495057;
-            /* Dark color for text in form controls in light mode */
-            border: 1px solid #ced4da;
-            /* Border color for form controls in light mode */
-        }
+body.light-mode .btn-primary:hover {
+    background-color: #ab4fe4 !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+
 
         body.light-mode .info-button {
             color: gray;
@@ -113,7 +111,7 @@
             /* Light text color for cards in dark mode */
         }
 
- 
+
 
         body.dark-mode .form-control {
             background-color: #6c757d;
@@ -163,7 +161,7 @@
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" id="submitBtn" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
