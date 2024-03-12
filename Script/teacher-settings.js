@@ -4,7 +4,7 @@ let bucketData = {};
 // Clear the bucketData at the beginning
 chrome.storage.local.set({ bucketData }, function() {
     // Retrieve user selections from Chrome Storage
-    chrome.storage.sync.get(['competencies', 'buckets'], function(result) {
+    chrome.storage.local.get(['competencies', 'buckets'], function(result) {
         const competencies = result.competencies || 0;
         const buckets = result.buckets || 0;
 
