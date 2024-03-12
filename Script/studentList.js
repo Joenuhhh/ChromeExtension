@@ -17,6 +17,7 @@ chrome.storage.local.get(['bucketData'], function (result) {
         cardHeader.className = 'card-header';
         const header = document.createElement('h3');
         header.textContent = 'Competency to Bucket Mapping';
+        header.classList.add('lighter-font');
         cardHeader.appendChild(header);
         bigCard.appendChild(cardHeader);
 
@@ -213,6 +214,18 @@ chrome.storage.local.get(['studentList', 'competencyToBucket', 'bucketData'], fu
             // Append the student card to the container
             container.appendChild(studentCard);
 
+           // Create a button for viewing student details
+    const viewButton = document.createElement('button');
+    viewButton.textContent = 'View Details';
+    viewButton.className = 'btn btn-primary btn-block'; 
+    viewButton.addEventListener('click', function () {
+        // Use studentIndex as the identifier to store in localStorage
+        localStorage.setItem('searchedStudentId', studentIndex.toString());
+        window.location.href = "singleStudent.html";
+    });
+
+    // Append the button to the student card body
+    studentCardBody.appendChild(viewButton);
             // Update the student object with bucket scores
             student.bucketScores = bucketScores; // Add bucketScores to the student object
             document.body.appendChild(container);
@@ -224,16 +237,16 @@ chrome.storage.local.get(['studentList', 'competencyToBucket', 'bucketData'], fu
             console.log('The full student list with bucket scores has been saved to Chrome storage.');
         });
         chrome.storage.local.get(['fullStudentList'], function (result) {
-    const fullStudentList = result.fullStudentList;
-    if (fullStudentList && fullStudentList.length > 0) {
-        console.log('Full Student List with Bucket Scores:');
-        fullStudentList.forEach(function (student, index) {
-            console.log(`Student ${index + 1}:`, student);
+            const fullStudentList = result.fullStudentList;
+            if (fullStudentList && fullStudentList.length > 0) {
+                console.log('Full Student List with Bucket Scores:');
+                fullStudentList.forEach(function (student, index) {
+                    console.log(`Student ${index + 1}:`, student);
+                });
+            } else {
+                console.log('The full student list is empty or not found.');
+            }
         });
-    } else {
-        console.log('The full student list is empty or not found.');
-    }
-});
 
 
     } else {

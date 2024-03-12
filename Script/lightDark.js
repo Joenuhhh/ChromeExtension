@@ -22,9 +22,13 @@ document.addEventListener('DOMContentLoaded', function () {
         // Apply styles or other changes based on the mode
         if (mode === 'dark') {
             document.body.classList.add('dark-mode'); // Add a class for dark mode
+   
         } else {
             document.body.classList.remove('dark-mode'); // Remove the class for light mode
+
+   
         }
+        
     }
 
     // Initialize the extension UI with the saved mode (or default to light mode)

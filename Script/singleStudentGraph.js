@@ -13,9 +13,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 for (const key in student) {
                     if (student.hasOwnProperty(key) && key.startsWith('Competency')) {
                         competencies.push(key);
-                        competencyScores.push(parseFloat(student[key][0]));
+                        // Calculate the average score for the competency
+                        const averageScore = student[key].reduce((sum, score) => sum + parseFloat(score), 0) / student[key].length;
+                        competencyScores.push(averageScore); // Push the average score instead of the first item
                     }
                 }
+                
 
                 // Plot competency scores graph
                 const competencyData = [{

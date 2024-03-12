@@ -126,3 +126,15 @@ function calculateAverage(scores) {
   const sum = scores.reduce((total, score) => total + parseFloat(score), 0);
   return sum / scores.length;
 }
+
+// Clear data from Chrome storage when extension is closed
+chrome.runtime.onSuspend.addListener(function() {
+    // Clear all data stored in Chrome local storage
+    chrome.storage.local.clear(function() {
+        if (chrome.runtime.lastError) {
+            console.error("Error clearing local storage:", chrome.runtime.lastError);
+        } else {
+            console.log("Local storage cleared successfully.");
+        }
+    });
+});

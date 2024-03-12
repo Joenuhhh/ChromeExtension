@@ -32,7 +32,12 @@ body.light-mode {
     background-color: #fff;
     color: #333;
 }
-
+.td{
+    font-weight: lighter;
+}
+.th{
+    font-weight: lighter;
+}
 .card-info.light-mode h4,
 .card-info.light-mode p {
     color: #333; /* Ensure text color remains black */
@@ -67,7 +72,9 @@ body.light-mode {
 .Disclaimer.light-mode {
     color: gray;
 }
-
+.table{
+    font-weight: lighter;
+}
 .Disclaimer.light-mode h2 {
     color: black;
 }

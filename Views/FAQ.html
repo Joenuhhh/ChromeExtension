@@ -30,6 +30,7 @@
             /* Position relative for absolute positioning of the back button */
             padding: 20px;
         }
+
         .card-form {
             max-width: 400px;
             margin: 0 auto;
@@ -41,6 +42,7 @@
             position: relative;
             /* Add position relative to allow absolute positioning of the info button */
         }
+
         /* Custom styling for the back button */
         .back-button {
             background-color: transparent;
@@ -164,12 +166,14 @@
             /* Dark text color for readability in light mode */
             /* other styles for light mode */
         }
+
         .dark-mode h2,
-    .dark-mode h3,
-    .dark-mode h4,
-    .dark-mode h5{
-        color: #c0c0c0; 
-    }
+        .dark-mode h3,
+        .dark-mode h4,
+        .dark-mode h5 {
+            color: #c0c0c0;
+        }
+
         /* Dark mode specific styles */
         .dark-mode .card-info {
             background-color: #495057;
@@ -178,9 +182,10 @@
             /* White text color for readability in dark mode */
             /* other styles for dark mode */
         }
-        .dark-mode .Disclaimer{
-        color: #a39e9e; 
-    }
+
+        .dark-mode .Disclaimer {
+            color: #a39e9e;
+        }
     </style>
     <title>Info Page</title>
 </head>
@@ -188,59 +193,21 @@
 <body>
     <div class="container mt-3">
         <div class="card card-info">
-            <!-- Dummy Info -->
-            <h5 class="text-center">Important Info and Help</h5>
             <div class="Disclaimer">
-
-                <br>
-                <p class="text-center">This tool was designed to be an aid for teachers who need a more efficient way to
-                    organize their students' grades and progress. Attached here are some important links to get you
-                    started.
-                </p>
-            </div>
-            <!-- YouTube Button -->
-            <a href="https://www.youtube.com/watch?v=_t1-euAHRn8&ab_channel=JonahBillerbeck" class="youtube-button"
-                target="_blank">YouTube Demo</a>
-            <!-- GitHub Button -->
-            <a href="https://github.com/Joenuhhh/ChromeExtension" class="github-button" target="_blank">GitHub
-                Documentation</a>
-           
-            <!-- Toggle switch for light/dark mode -->
-            <div class="text-center" style="margin-top: 20px;">
-                <label class="toggle-switch" style="vertical-align: middle; display: inline-block;">
-                    <input type="checkbox" id="toggle-mode">
-                    <span class="toggle-slider"></span>
-                </label>
-                <label for="toggle-mode" style="vertical-align: middle; display: inline-block; margin-left: 5px;">Dark Mode</label>
-            </div>
+            <h5>FAQ's</h5>
             <br>
-            <div class="Disclaimer">
-                <h2>Disclaimer:</h2>
-                <p>This tool is designed for educational purposes only. All information presented within this
-                    application is intended solely for use by authorized teachers and administrators. Access to student
-                    information is restricted to individuals with valid credentials to log in.</p>
-                <p>Please note that all information accessed through this tool is stored locally within the user's
-                    browser and is not transmitted or made public at any time. We take privacy and data security
-                    seriously, and measures have been implemented to ensure the confidentiality and protection of
-                    student data.</p>
-                <p>Unauthorized access to student information or misuse of this application is strictly prohibited and
-                    will be reported without exception.</p>
-                <p>By using this application, you agree to abide by the terms and conditions outlined in our privacy
-                    policy and to use the information obtained responsibly and in accordance with applicable laws and
-                    regulations.</p>
-                    <h5>Help make the application better!</h5>
-                    <p>If you have any issues to report, bugs or features you would find useful to include in the application, send an email to <a href="mailto:Jonnahha@email.com">Jonnahha@email.com</a>.</p>
+                    <h5>Q: How do I know what buckets and competencies to select?</h5>
+                    <p>As an educator, you should already have a certain number of competencies with their own name. All you need to do is sort them into a bucket with competencies that fall in the same category. The numerical designation of the buckets is inconsequential as long as the content within aligns accurately with the corresponding competencies.</p>
                     <br>
-                    
-                </div>
-            <p>Current Version: <span id="version"></span></p>
-            <a href="FAQ.html" class="back-button" style="display: block; margin: 10px auto;">Frequently asked questions.</a>
-            <a href="Privacy.html" class="back-button" style="display: block; margin: 10px auto;">Privacy Policy</a>
-            <!-- Back Button -->
-            <a href="popup.html" class="back-button">&#8592;Back to main page.</a>
+                    <h5>Q: Why are some grades missing from my graph?</h5>
+                    <p>Our web scraping tool is designed to present data that is currently visible on the screen. Therefore, it is essential to ensure that all dropdown menus and collapsed columns are expanded before utilizing the tool to obtain accurate data.</p>
+                    <br>
+                    <h5>Q: Who has access to my students' grades?</h5>
+                    <p>Only you. The application utilizes Chrome's local storage, ensuring that private information remains confined within your browser and inaccessible to external entities.</p><!-- Back Button -->
+            <a href="Info.html" class="back-button">&#8592;Back to settings and info.</a>
         </div>
     </div>
-
+</div>
     <!-- Include your JavaScript file -->
     <script src="/Script/RenderVersion.js"></script>
 </body>

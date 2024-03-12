@@ -18,7 +18,9 @@
         margin: 0;
         overflow-x: scroll;
     }
-
+    .table{
+        font-weight: lighter;
+    }
     /* Custom styling for the cards */
     .card-container {
         width: fit-content;
@@ -54,6 +56,7 @@
         background-color: #be89df; /* Blue background for primary buttons in light mode */
         color: #fff; /* White text color for primary buttons in light mode */
         border: none;
+        box-shadow: 4px 2px 4px rgba(89, 87, 87, 0.9);
     }
     body.light-mode .btn-primary:hover {
         background-color: #ab4fe4; /* Blue background for primary buttons in light mode */
@@ -62,12 +65,18 @@
     }
 
     /* Dark mode styles */
-    body.dark-mode {
-         /* Dark background for dark mode */
-         
-        color: #f8f9fa; /* Light text color for readability in dark mode */
+    body.dark-mode .section-title {
+                 /* Darker background for form controls in dark mode */
+            color: #e9ecef;
+            /* Lighter color for text in form controls in dark mode */
+            border: 1px solid #495057;
+          
+            font-weight: lighter;/* Light text color for readability in dark mode */
     }
-
+    .section-title{
+            color: #5a5a5a;
+            font-weight: lighter;
+        }
     body.dark-mode .card {
         background-color: #495057;
        
@@ -75,7 +84,9 @@
         border-radius: 10px;
         
     }
-
+    .th{
+        font-weight: lighter;
+    }
     body.dark-mode .btn-primary {
         background-color: #626161; /* Green background for primary buttons in dark mode */
         color: #ced4da; /* White text color for primary buttons in dark mode */
@@ -148,6 +159,7 @@
         <!-- Teacher Settings Card -->
         <div class="card card-container">
             <div class="card-body">
+                
                 <h4 class="section-title">Select What buckets have which competencies:</h4>
                 <!-- Display the table here -->
                 <div id="tableContainer">

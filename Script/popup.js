@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const buckets = document.getElementById('buckets').value;
 
         // Store the form values in Chrome Storage
-        chrome.storage.sync.set({
+        chrome.storage.local.set({
             username,
             competencies,
             buckets
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add an event listener to the extension icon click
     chrome.action.onClicked.addListener(function (tab) {
         // Clear the bucketData in Chrome storage
-        chrome.storage.sync.remove(['bucketData'], function() {
+        chrome.storage.local.remove(['bucketData'], function() {
             // Reload the popup.html
             chrome.scripting.executeScript({
                 target: {tabId: tab.id},

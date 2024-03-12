@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <script src="/Script/lightDark.js"></script>
+    <script src="/Script/popup.js"></script>
     <link rel="stylesheet" href="lightdark.css">
     <!-- Bootstrap CSS -->
     <style>
@@ -44,22 +45,25 @@
 
         .info-button {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 20px;
+            right: 20px;
+            width: 27px;
+            /* Updated width */
+            height: 27px;
+            /* Updated height */
+            padding: 0;
             background-color: transparent;
             border: none;
-            color: gray;
-            font-size: 14px;
-            padding: 0;
             cursor: pointer;
-            width: 30px;
-            /* Set width */
-            height: 30px;
-            /* Set height */
-            border-radius: 50%;
-            /* Make it circular */
-            line-height: 30px;
-            /* Center the text vertically */
+        }
+
+        #infoGif {
+            width: 100%;
+            /* Make image fill the button */
+            height: 100%;
+            /* Make image fill the button */
+            object-fit: cover;
+            /* This will ensure the image covers the area without stretching */
         }
 
         /* Light mode styles */
@@ -78,18 +82,17 @@
         }
 
         body.light-mode .btn-primary {
-    background-color: #be89df !important;
-    color: #fff !important;
-    border: none !important;
-}
+            background-color: #be89df !important;
+            color: #fff !important;
+            border: none !important;
+            box-shadow: 4px 2px 4px rgba(89, 87, 87, 0.9);
+        }
 
-body.light-mode .btn-primary:hover {
-    background-color: #ab4fe4 !important;
-    color: #fff !important;
-    border: none !important;
-}
-
-
+        body.light-mode .btn-primary:hover {
+            background-color: #ab4fe4 !important;
+            color: #fff !important;
+            border: none !important;
+        }
 
         body.light-mode .info-button {
             color: gray;
@@ -111,8 +114,6 @@ body.light-mode .btn-primary:hover {
             /* Light text color for cards in dark mode */
         }
 
-
-
         body.dark-mode .form-control {
             background-color: #6c757d;
             /* Darker background for form controls in dark mode */
@@ -120,6 +121,7 @@ body.light-mode .btn-primary:hover {
             /* Lighter color for text in form controls in dark mode */
             border: 1px solid #495057;
             /* Darker border color for form controls in dark mode */
+
         }
 
         body.dark-mode .info-button {
@@ -128,8 +130,31 @@ body.light-mode .btn-primary:hover {
         }
 
         .info-button:hover {
-            background-color: rgba(0, 0, 0, 0.1);
+            transform: scale(1.25);
             /* Change the background color on hover */
+        }
+
+        body.light-mode .form-title {
+            color: #5a5a5a;
+            font-weight: lighter;
+        }
+
+        body.dark-mode .form-title {
+            /* Darker background for form controls in dark mode */
+            color: #e9ecef;
+            /* Lighter color for text in form controls in dark mode */
+            border: 1px solid #495057;
+
+            font-weight: lighter;
+            /* Darker border color for form controls in dark mode */
+        }
+
+        body.light-mode .form-control {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-form .form-group {
+            font-weight: lighter;
         }
     </style>
     <title>Settings Input</title>
@@ -139,9 +164,11 @@ body.light-mode .btn-primary:hover {
     <div class="container mt-3">
         <div class="card card-form">
             <!-- Info Button -->
-            <a href="info.html" class="btn btn-info info-button">Info</a>
+            <a href="info.html" class="info-button">
+                <img src="/Images/settingsButtonDark.png" alt="Info" id="infoGif">
+            </a>
 
-            <h2 class="form-title">Teacher Settings</h2>
+            <h4 class="form-title">Easy Grader </h4>
             <form id="settingsForm" action="TeacherSettings.html" method="GET">
                 <!-- Number of Competencies -->
                 <div class="form-group">
@@ -156,8 +183,8 @@ body.light-mode .btn-primary:hover {
 
                 <!-- Number of Buckets -->
                 <div class="form-group">
-                    <label for="buckets">Number of Buckets (Max 15):</label>
-                    <input type="number" id="buckets" name="buckets" class="form-control" min="1" max="15" required>
+                    <label for="buckets">Number of Buckets (Max 7):</label>
+                    <input type="number" id="buckets" name="buckets" class="form-control" min="1" max="7" required>
                 </div>
 
                 <!-- Submit Button -->
@@ -165,8 +192,6 @@ body.light-mode .btn-primary:hover {
             </form>
         </div>
     </div>
-
-    <script src="/Script/popup.js"></script>
 </body>
 
 </html>
