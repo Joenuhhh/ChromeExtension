@@ -6,113 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="/Script/lightDark.js"></script>
-    <link rel="stylesheet" href="lightdark.css">
+    <link rel="stylesheet" href="/Views/css/singleStudent.css">
     <script src="/Script/singleStudent.js"></script>
     <script type="module" src="/Script/plotly.js"></script>
   <script type="module" src="/Script/singleStudentGraph.js"></script>
     
     <title>Student Details</title>
 </head>
-<style>
-    /* Set the width and height of the popup */
-    body {
-        width: flex;
-        min-width: 400px;
-        /* Specify the width in pixels or percentage */
-        height: flex;
-        /* Specify the height in pixels or percentage */
-        background-color: #6b9dd2;
-    }
-
-    /* Custom styling for the cards */
-    .card-container {
-        width: fit-content;
-        min-width: 500px;
-        margin: 20px;
-    }
-    /* Light mode styles */
-    body.light-mode {
-        background-color: #f4f4f4; /* Light background for light mode */
-        color: #333; /* Dark text color for readability in light mode */
-    }
-
-    body.light-mode .card {
-        background-color: #fff; /* Light background for cards in light mode */
-        color: #333; /* Dark text color for cards in light mode */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    body.dark-mode .card-header{
-        color: #fff;
-    }
-    body.light-mode .btn-primary {
-        background-color: #007bff; /* Blue background for primary buttons in light mode */
-        color: #fff; /* White text color for primary buttons in light mode */
-    }
-
-    /* Dark mode styles */
-    body.dark-mode {
-         /* Dark background for dark mode */
-         
-        color: #f8f9fa; /* Light text color for readability in dark mode */
-    }
-
-    body.dark-mode .card {
-        background-color: #495057;
-        border: none; /* Dark background for cards in dark mode */
-        color: #f8f9fa; /* Light text color for cards in dark mode */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    body.dark-mode .btn-primary {
-        background-color: #626161; /* Green background for primary buttons in dark mode */
-        color: #fff; /* White text color for primary buttons in dark mode */
-        border: transparent;
-    }
-    body.light-mode table {
-        background-color: #fff; /* White background for tables in light mode */
-        color: #333; /* Dark text color for tables in light mode */
-    }
-
-    body.light-mode th,
-    body.light-mode td {
-        border: 1px solid #ddd; /* Light borders for table cells in light mode */
-        padding: 8px; /* Padding for table cells */
-    }
-
-    body.light-mode th {
-        background-color: #f2f2f2; /* Slightly grey background for table headers in light mode */
-        color: #333; /* Dark text color for table headers in light mode */
-    }
-
-    /* Dark mode table styles */
-    body.dark-mode table {
-        background-color: #495057;/* Dark background for tables in dark mode */
-        color: #f8f9fa; /* Light text color for tables in dark mode */
-    }
-
-    body.dark-mode th,
-    body.dark-mode td {
-        border: 1px solid transparent; /* Dark borders for table cells in dark mode */
-        padding: 8px; /* Padding for table cells */
-        text-align: center;
-    }
-
-    body.dark-mode th {
-        background-color: #626161; /* Even darker background for table headers in dark mode */
-        color: #f8f9fa; /* Light text color for table headers in dark mode */
-    }
-            /* Custom styling for the back button */
-            .back-button {
-            background-color: transparent;
-            border: none;
-            color: rgb(115, 131, 129);
-            font-size: 14px;
-            padding: 0;
-            cursor: pointer;
-            text-decoration: none;
-        }
-</style>
-
 <body>
     <div class="card card-container">
         <div class="card-body">

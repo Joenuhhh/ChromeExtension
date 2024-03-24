@@ -1,0 +1,168 @@
+body {
+    height: flex;
+    width: flex;
+}
+
+/* Custom styling for the card */
+.card-info {
+    min-width: 400px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    /* Card background color */
+    position: relative;
+    /* Position relative for absolute positioning of the back button */
+    padding: 20px;
+}
+.card-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    /* Form background color */
+    position: relative;
+    /* Add position relative to allow absolute positioning of the info button */
+}
+/* Custom styling for the back button */
+.back-button {
+    background-color: transparent;
+    border: none;
+    color: rgb(115, 131, 129);
+    font-size: 14px;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    text-decoration: none;
+    color: rgb(106, 189, 189);
+}
+
+/* Custom styling for the YouTube button */
+.youtube-button {
+    font-weight: bold;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.youtube-button:hover {
+    background-color: #d7a8a8;
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Custom styling for the GitHub button */
+.github-button {
+    font-weight: bold;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #000;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.github-button:hover {
+    background-color: #666;
+    color: #fff;
+    text-decoration: none;
+}
+
+.Disclaimer {
+    font-size: 14px;
+    color: gray;
+}
+
+.Disclaimer h2 {
+    font-size: 18px;
+    color: black;
+}
+
+/* Toggle switch styles */
+.toggle-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+.toggle-switch input[type="checkbox"] {
+    display: none;
+}
+
+.toggle-slider {
+    background-color: #ccc;
+    border-radius: 34px;
+    cursor: pointer;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    transition: 0.4s;
+    width: 100%;
+}
+
+.toggle-slider:before {
+    background-color: white;
+    border-radius: 50%;
+    bottom: 3px;
+    content: "";
+    height: 26px;
+    left: 3px;
+    position: absolute;
+    transition: 0.4s;
+    width: 26px;
+}
+
+input[type="checkbox"]:checked+.toggle-slider {
+    background-color: #2196F3;
+}
+
+input[type="checkbox"]:checked+.toggle-slider:before {
+    transform: translateX(26px);
+}
+
+/* Light mode specific styles */
+.light-mode .card-info {
+    background-color: #FFFFFF;
+    /* White background for light mode */
+    color: #333333;
+    /* Dark text color for readability in light mode */
+    /* other styles for light mode */
+}
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5{
+color: #c0c0c0; 
+}
+/* Dark mode specific styles */
+.dark-mode .card-info {
+    background-color: #495057;
+    /* Dark background for dark mode */
+    color: #FFFFFF;
+    /* White text color for readability in dark mode */
+    /* other styles for dark mode */
+}
+.dark-mode .Disclaimer{
+color: #a39e9e; 
+}

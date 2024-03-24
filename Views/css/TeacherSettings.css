@@ -1,0 +1,139 @@
+
+body {
+ width: flex;
+ min-width: 400px;
+ height: flex;
+ margin: 0;
+ overflow-x: scroll;
+}
+.table{
+ font-weight: lighter;
+}
+/* Custom styling for the cards */
+.card-container {
+ width: fit-content;
+ min-width: 500px;
+ margin: 5px;
+ margin-bottom: 10px;
+}
+
+/* Custom styling for the h2 */
+.section-title {
+ font-size: 24px;
+ font-weight: bold;
+ text-align: center;
+}
+
+/* Custom styling for the buttons */
+.btn-custom {
+ width: 100%;
+}
+
+/* Light mode styles */
+body.light-mode {
+ background-color: #f4f4f4; /* Light background for light mode */
+ color: #333; /* Dark text color for readability in light mode */
+}
+
+body.light-mode .card {
+ background-color: #fff; /* Light background for cards in light mode */
+ color: #333; /* Dark text color for cards in light mode */
+}
+
+body.light-mode .btn-primary {
+ background-color: #be89df; /* Blue background for primary buttons in light mode */
+ color: #fff; /* White text color for primary buttons in light mode */
+ border: none;
+ box-shadow: 4px 2px 4px rgba(89, 87, 87, 0.9);
+}
+body.light-mode .btn-primary:hover {
+ background-color: #ab4fe4; /* Blue background for primary buttons in light mode */
+ color: #fff; /* White text color for primary buttons in light mode */
+ border: none;
+}
+
+/* Dark mode styles */
+body.dark-mode .section-title {
+          /* Darker background for form controls in dark mode */
+     color: #e9ecef;
+     /* Lighter color for text in form controls in dark mode */
+     border: 1px solid #495057;
+   
+     font-weight: lighter;/* Light text color for readability in dark mode */
+}
+.section-title{
+     color: #5a5a5a;
+     font-weight: lighter;
+ }
+body.dark-mode .card {
+ background-color: #495057;
+
+ color: #ced4da; /* Light text color for cards in dark mode */
+ border-radius: 10px;
+ 
+}
+.th{
+ font-weight: lighter;
+}
+body.dark-mode .btn-primary {
+ background-color: #626161; /* Green background for primary buttons in dark mode */
+ color: #ced4da; /* White text color for primary buttons in dark mode */
+ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ border: transparent;
+}
+body.dark-mode .btn-primary:hover {
+ background-color: #515050; /* Green background for primary buttons in dark mode */
+ color: #aaadaf; /* White text color for primary buttons in dark mode */
+ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ border: transparent;
+}
+body.light-mode table {
+ background-color: #fff; /* White background for tables in light mode */
+ color: #333; /* Dark text color for tables in light mode */
+ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode th,
+body.light-mode td {
+  /* Light borders for table cells in light mode */
+ padding: 8px; /* Padding for table cells */
+ text-align: center;
+ border: transparent;
+}
+.card-form {
+     max-width: 400px;
+     margin: 0 auto;
+     padding: 20px;
+     border: transparent;
+     border-radius: 10px;
+     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+     /* Form background color */
+     position: relative;
+     /* Add position relative to allow absolute positioning of the info button */
+ }
+body.light-mode th
+{
+ background-color: #f2f2f2; /* Slightly grey background for table headers in light mode */
+ color: #333; /* Dark text color for table headers in light mode */
+ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode table styles */
+body.dark-mode table {
+ background-color: #495057;/* Dark background for tables in dark mode */
+ color: #ced4da; /* Light text color for tables in dark mode */
+}
+
+body.dark-mode th,
+body.dark-mode td {
+ border: 1px solid transparent; /* Dark borders for table cells in dark mode */
+ padding: 8px; /* Padding for table cells */
+ text-align: center;
+}
+
+body.dark-mode th {
+ background-color: #626161; /* Even darker background for table headers in dark mode */
+ color: #f8f9fa; /* Light text color for table headers in dark mode */
+ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

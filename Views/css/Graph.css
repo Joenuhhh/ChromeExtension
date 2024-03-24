@@ -1,0 +1,177 @@
+
+  /* Set the width and height of the popup */
+  body {
+    width: flex;
+    min-width: 400px;
+    /* Specify the width in pixels or percentage */
+    height: flex;
+    /* Specify the height in pixels or percentage */
+    background-color: #6b9dd2;
+  }
+
+  /* Custom styling for the cards */
+  .card-container {
+    width: fit-content;
+    min-width: 500px;
+    margin: 20px;
+  }
+
+  /* Style for search bar */
+  .search-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .search-input {
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  /* CSS styles to highlight matched elements */
+  .highlight {
+    background-color: yellow;
+  }
+
+  /* Light mode styles */
+  body.light-mode {
+    background-color: #f4f4f4;
+    /* Light background for light mode */
+    color: #333;
+    /* Dark text color for readability in light mode */
+  }
+
+  body.light-mode .card {
+    background-color: #fff;
+    /* Light background for cards in light mode */
+    color: #333;
+    /* Dark text color for cards in light mode */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  body.dark-mode .card-header {
+    color: #fff;
+  }
+
+  body.light-mode .btn-primary {
+    background-color: #be89df;
+    /* Blue background for primary buttons in light mode */
+    color: #fff;
+    /* White text color for primary buttons in light mode */
+    border: none;
+  }
+
+  body.light-mode .btn-primary:hover {
+    background-color: #ab4fe4;
+    /* Blue background for primary buttons in light mode */
+    color: #fff;
+    /* White text color for primary buttons in light mode */
+    border: none;
+  }
+
+  body.light-mode .card-container {
+    background-color: transparent;
+  }
+
+  body.dark-mode .card-container {
+    background-color: transparent;
+  }
+
+  /* Dark mode styles */
+  body.dark-mode {
+    /* Dark background for dark mode */
+
+    color: #ced4da;
+    /* Light text color for readability in dark mode */
+  }
+
+  body.dark-mode .card {
+    background-color: #495057;
+    border: transparent;
+    /* Dark background for cards in dark mode */
+    color: #ced4da;
+    /* Light text color for cards in dark mode */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  body.dark-mode .btn-primary {
+    background-color: #626161;
+    /* Green background for primary buttons in dark mode */
+    color: #ced4da;
+    /* White text color for primary buttons in dark mode */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: transparent;
+  }
+
+  body.dark-mode .btn-primary:hover {
+    background-color: #515050;
+    /* Green background for primary buttons in dark mode */
+    color: #aaadaf;
+    /* White text color for primary buttons in dark mode */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: transparent;
+  }
+
+  body.light-mode table {
+    background-color: #fff;
+    /* White background for tables in light mode */
+    color: #333;
+    /* Dark text color for tables in light mode */
+  }
+
+  body.light-mode th,
+  body.light-mode td {
+    border: 1px solid #ddd;
+    /* Light borders for table cells in light mode */
+    padding: 8px;
+    /* Padding for table cells */
+  }
+
+  body.light-mode th {
+    background-color: #f2f2f2;
+    /* Slightly grey background for table headers in light mode */
+    color: #333;
+    /* Dark text color for table headers in light mode */
+  }
+
+  body.light-mode .form-control {
+    background-color: #fff;
+    /* White background for form controls in light mode */
+    color: #495057;
+    /* Dark color for text in form controls in light mode */
+    border: 1px solid #ced4da;
+    /* Border color for form controls in light mode */
+  }
+
+  body.dark-mode .form-control {
+    background-color: #6c757d;
+    /* Darker background for form controls in dark mode */
+    color: #ced4da;
+    /* Lighter color for text in form controls in dark mode */
+    border: 1px solid #495057;
+    /* Darker border color for form controls in dark mode */
+  }
+
+  /* Dark mode table styles */
+  body.dark-mode table {
+    background-color: #495057;
+    /* Dark background for tables in dark mode */
+    color: #ced4da;
+    /* Light text color for tables in dark mode */
+  }
+
+  body.dark-mode th,
+  body.dark-mode td {
+    border: 1px solid transparent;
+    /* Dark borders for table cells in dark mode */
+    padding: 8px;
+    /* Padding for table cells */
+    text-align: center;
+  }
+
+  body.dark-mode th {
+    background-color: #626161;
+    /* Even darker background for table headers in dark mode */
+    color: #ced4da;
+    /* Light text color for table headers in dark mode */
+  }

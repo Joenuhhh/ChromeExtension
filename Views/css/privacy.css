@@ -1,0 +1,88 @@
+
+body {
+    width: 425px;
+    /* Specify the width in pixels or percentage */
+    height: 400px;
+}
+
+/* Light mode specific styles */
+.light-mode .card-info {
+    background-color: #FFFFFF;
+    /* White background for light mode */
+    color: #333333;
+    /* Dark text color for readability in light mode */
+    /* other styles for light mode */
+}
+
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5 {
+    color: #c0c0c0;
+}
+
+/* Dark mode specific styles */
+.dark-mode .card-info {
+    background-color: #495057;
+    /* Dark background for dark mode */
+    color: #FFFFFF;
+    /* White text color for readability in dark mode */
+    /* other styles for dark mode */
+}
+
+.dark-mode .Disclaimer {
+    color: #a39e9e;
+}
+
+/* Custom styling for the card */
+.card-info {
+    min-width: 400px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    /* Card background color */
+    position: relative;
+    /* Position relative for absolute positioning of the back button */
+    padding: 20px;
+}
+
+/* Custom styling for the back button */
+/* Custom styling for the back button */
+.back-button {
+    background-color: transparent;
+    border: none;
+    color: rgb(115, 131, 129);
+    font-size: 14px;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+.Disclaimer {
+    font-size: 14px;
+    color: gray;
+}
+
+.Disclaimer h2,
+.Disclaimer h3,
+.Disclaimer h4,
+.Disclaimer h5 {
+    font-size: 18px;
+
+}
+
+.Disclaimer ul {
+    list-style-type: none;
+    padding: 0;
+    margin-left: 20px;
+}
+
+.Disclaimer ul li {
+    margin-bottom: 5px;
+}
+
+.Disclaimer p strong {
+    color: #ff0000;
+}
