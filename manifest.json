@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Print HTML to Console",
-  "version": "2.5.1",
+  "version": "3.7.2",
   "description": "A simple Chrome extension to print the current webpage's HTML to the console",
   "permissions": ["activeTab", "scripting", "storage"],
   "host_permissions": ["<all_urls>"],

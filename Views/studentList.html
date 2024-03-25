@@ -16,19 +16,28 @@
 
 
 <body>
-    <div class="card card-container">
+    <div class="card card-container" style="padding-bottom: .4;">
         <div class="card-header">
             <h2 style="font-weight: lighter !important;">External Resources</h2>
         </div>
-        <div class="card-body">
+        <div class="card-body" style="padding-bottom: 1%;">
             <!-- Search bar -->
             <div class="search-bar">
                 <input type="text" class="form-control search-input" id="searchInput"
                     placeholder="Search a student here...">
                 <button class="btn btn-primary" id="searchBtn">Search</button>
             </div>
-            <button class="btn btn-primary" id="export-csv-btn">Export to CSV</button>
-            <a href="/Views/Graph.html" class="btn btn-primary">View Graph</a>
+            <div class="row mt-4" style="padding-bottom: 0;">
+                <div class="col">
+                    <button class="btn btn-primary btn-block mb-2" id="export-csv-btn">Export to CSV</button>
+                </div>
+                <div class="col">
+                    <a href="/Views/Graph.html" class="btn btn-primary btn-block mb-2">View Graph</a>
+                </div>
+                <div class="col">
+                    <a href="/Views/popup.html" class="btn btn-primary btn-block mb-2">Restart</a>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Use a form to navigate to Graph.html -->

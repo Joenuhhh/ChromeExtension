@@ -1,9 +1,11 @@
 
 body {
- width: flex;
- min-width: 400px;
+ min-width: 570px;
+ width: auto;
  height: flex;
- margin: 0;
+ margin: 0 auto; /* Added */
+float: none; /* Added */
+ margin-bottom: 10px; /* Added */
  overflow-x: scroll;
 }
 .table{
