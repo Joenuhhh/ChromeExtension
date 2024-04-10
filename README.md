@@ -1,7 +1,7 @@
 # Web Scraping Chrome Extension: Grade Organizer
 
 <p align="center">
-  <img src="/path/to/grade-organizer.png" alt="Grade Organizer" width="400"/>
+  <img src="https://github.com/Joenuhhh/ChromeExtension" alt="Grade Organizer" width="400"/>
 </p>
 
 ## Overview
