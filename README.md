@@ -14,6 +14,8 @@ The Grade Organizer is a Chrome extension designed to assist teachers in efficie
 - **Efficient Sorting**: Provides sorting options to easily manage and prioritize grades.
 - **User-friendly Interface**: Intuitive interface with drag-and-drop functionality for seamless grade manipulation.
 - **Chrome Extension**: Conveniently integrates with Chrome browser for easy access and usability.
+![image](https://github.com/Joenuhhh/ChromeExtension/assets/79020295/b73b3609-c1b9-4f18-a8c4-455c6552b92d)
+
 
 ## Installation
 
