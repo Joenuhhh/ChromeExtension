@@ -1,10 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Print HTML to Console",
+  "name": "Easy Grader!",
   "version": "3.7.2",
-  "description": "A simple Chrome extension made to reorganize student html data of a specific format to a visual manner for local teachers. This application will only work on very small, very simple web pages-- it was hand designed for the teachers of my local district to have an easier time grading in bulk and seeing classroom trends.",
+  "description": "A Chrome extension made to reorganize student html data of a specific format to a visual manner for my small town local teachers.",
   "permissions": ["activeTab", "scripting", "storage"],
-  "host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "Views/popup.html",
     "default_icon": {
@@ -21,7 +20,8 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["Script/teacher-settings.js", "Script/save-settings.js", "Script/popup.js"]
+      "js": ["Script/teacher-settings.js", "Script/save-settings.js", "Script/popup.js"],
+      "permissions": ["activeTab"]
     }
   ],
   "web_accessible_resources": [
