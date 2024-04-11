@@ -1,16 +1,16 @@
 // Import the functions to be tested
 // Adjust the path as needed
 
-// Mock the chrome object
 const mockChrome = {
   storage: {
     sync: {
       set: jest.fn(),
+      get: jest.fn(), // Define the get method
       remove: jest.fn(),
     },
     local: {
       remove: jest.fn(),
-      set: jest.fn((data, callback) => callback()), // Mock the set method to call the callback
+      set: jest.fn((data, callback) => callback()),
     },
   },
   tabs: {
@@ -20,9 +20,10 @@ const mockChrome = {
     executeScript: jest.fn(),
   },
   runtime: {
-    getManifest: jest.fn(() => ({ version: '1.0.0' })), // Mocking the getManifest method to return version '1.0.0'
+    getManifest: jest.fn(() => ({ version: '1.0.0' })),
   },
 };
+
 
 // Define mock data for testing
 const mockCompetencies = 3; // Example number of competencies
@@ -30,6 +31,17 @@ const mockBuckets = 2; // Example number of buckets
 const mockBucketData = {};
 // Assign the mock chrome object to the global object
 global.chrome = mockChrome;
+
+
+
+
+
+
+
+
+
+
+
 
 // Test case to check if the set method of chrome.storage.sync is called
 test('chrome.storage.sync.set is called', async () => {
@@ -40,16 +52,10 @@ test('chrome.storage.sync.set is called', async () => {
   expect(mockChrome.storage.sync.set).toHaveBeenCalled();
 });
 
-
-
-
-
-
 // Initialize bucket data
 for (let i = 1; i <= mockBuckets; i++) {
     mockBucketData[`Bucket ${i}`] = [];
 }
-
 // Add mock dependencies to each bucket
 for (let i = 1; i <= mockCompetencies; i++) {
     for (let j = 1; j <= mockBuckets; j++) {
@@ -59,12 +65,46 @@ for (let i = 1; i <= mockCompetencies; i++) {
         mockBucketData[`Bucket ${j}`].push(dependency);
     }
 }
+// Mock chrome.storage.sync
+const mockChromeStorageSync = {
+  set: jest.fn(),
+  get: jest.fn((key, callback) => callback({ mode: 'light' })),
+};
 
 
+// Import the applyMode function from lightDark.js
+const { saveModeToStorage, toggleMode, initializeUI, applyMode } = require('./lightDarkTests.js');
 
+// Test case for the applyMode function
+test('Applies dark mode by adding "dark-mode" class to body', () => {
+  // Mock the document object
+  document.body.classList.add = jest.fn(); // Mock the classList.add method
+  document.body.classList.remove = jest.fn(); // Mock the classList.remove method
 
+  // Call applyMode with mode 'dark'
+  applyMode('dark');
 
+  // Expect classList.add to have been called with 'dark-mode'
+  expect(document.body.classList.add).toHaveBeenCalledWith('dark-mode');
 
+  // Expect classList.remove not to have been called
+  expect(document.body.classList.remove).not.toHaveBeenCalled();
+});
+
+test('Applies light mode by removing "dark-mode" class from body', () => {
+  // Mock the document object
+  document.body.classList.add = jest.fn(); // Mock the classList.add method
+  document.body.classList.remove = jest.fn(); // Mock the classList.remove method
+
+  // Call applyMode with mode 'light'
+  applyMode('light');
+
+  // Expect classList.remove to have been called with 'dark-mode'
+  expect(document.body.classList.remove).toHaveBeenCalledWith('dark-mode');
+
+  // Expect classList.add not to have been called
+  expect(document.body.classList.add).not.toHaveBeenCalled();
+});
 
 
 
@@ -82,15 +122,6 @@ test('Script correctly populates bucketData with mock data', () => {
   // Assert that the mock chrome.storage.local.set method is called with the mock bucketData and the callback function
   expect(mockChrome.storage.local.set).toHaveBeenCalledWith({ bucketData: mockBucketData }, expect.any(Function));
 });
-
-
-
-
-
-
-
-
-
 
 
 //web scraping test:
@@ -270,7 +301,109 @@ test('Displays the correct version number', () => {
   // Add additional assertions as needed based on how the version number is displayed
 });
 
+// Import the function scrollToSearchedName
+const { scrollToSearchedName } = require('./Searchtests.js');
+
+// Define mockData2 for testing
+const mockData2 = {
+  fullStudentList: [
+    {
+      ID: ['1'],
+      'First Name': ['John'],
+      'Last Name': ['Doe'],
+      'Competency 1': ['90'],
+      'Competency 2': ['85']
+    },
+    {
+      ID: ['2'],
+      'First Name': ['Jane'],
+      'Last Name': ['Smith'],
+      'Competency 1': ['95'],
+      'Competency 2': ['88']
+    }
+  ]
+};
+
+// Mock Chrome storage get method
+chrome.storage.local.get = jest.fn((key, callback) => callback(mockData2));
+
+// Mock window.location.assign method
+const mockAssign = jest.fn();
+global.window = Object.create(window);
+Object.defineProperty(window, 'location', {
+    value: { assign: mockAssign }
+});
+
+// Mock alert method
+global.alert = jest.fn();
 
 
+//test cases for search functionality
+describe('scrollToSearchedName', () => {
+
+    // Test case for searching a non-existing student
+    test('Shows error message for non-existing student', () => {
+        // Call the function with a search text that does not match any student's name
+        scrollToSearchedName('nonexistent');
+
+        // Expect an alert message for non-existing student
+        expect(alert).toHaveBeenCalledWith("No student found with the given name.");
+    });
+
+    // Test case for no student list found in Chrome storage
+    test('Shows error message if student list not found', () => {
+        // Mock Chrome storage get method to return undefined
+        chrome.storage.local.get = jest.fn((key, callback) => callback({}));
+
+        // Call the function
+        scrollToSearchedName('John');
+
+        // Expect an alert message for student list not found
+        expect(alert).toHaveBeenCalledWith("Student list not found in Chrome Storage.");
+    });
+});
+
+
+// Import the function to be tested
+const { convertStudentListToCSV, exportStudentsToCSV } = require('./studentListTests2.js');
+
+// Mock data for testing
+const mockStudentList2 = [
+    {
+        'ID': ['1'],
+        'First Name': ['John'],
+        'Last Name': ['Doe'],
+        'Competency 1': ['90'],
+        'Competency 2': ['85'],
+        'bucketScores': [
+            { bucketName: 'Bucket 1', scores: [90, 85, 88] },
+            { bucketName: 'Bucket 2', scores: [95, 92, 88, 90] },
+        ]
+    },
+    {
+        'ID': ['2'],
+        'First Name': ['Jane'],
+        'Last Name': ['Smith'],
+        'Competency 1': ['95'],
+        'Competency 2': ['88'],
+        'bucketScores': [
+            { bucketName: 'Bucket 1', scores: [85, 82, 90] },
+            { bucketName: 'Bucket 2', scores: [88, 90] },
+        ]
+    }
+];
+
+// Expected CSV content based on the mock student list
+const expectedCSVContent = `ID,First Name,Last Name,Competency 1,Competency 2,Bucket 1,Bucket 2\r\n1,John,Doe,"90","85","87.67","91.25"\r\n2,Jane,Smith,"95","88","85.67","89.00"\r\n`;
+
+
+// Test case for the convertStudentListToCSV function
+test('convertStudentListToCSV converts student list to CSV format', () => {
+    // Call the function with the mock student list
+    const csvContent = convertStudentListToCSV(mockStudentList2);
+
+    // Expect the output CSV content to match the expected CSV content
+    expect(csvContent).toEqual(expectedCSVContent);
+});
 
 
