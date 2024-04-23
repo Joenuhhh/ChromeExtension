@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    //check if bucket data exists
+    chrome.storage.sync.get(['competencyToBucket', 'bucketData'], function (result) {
+        var bucketData = result.bucketData; 
+        if(bucketData !== null && bucketData !== undefined && Object.keys(bucketData).length > 0){
+            window.location.href = 'studentList.html';
+        }
+    });
+    //move to studentList.html if they do
     // Add an event listener to the form
     document.getElementById('settingsForm').addEventListener('submit', function(event) {
         // Get form values
@@ -7,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const buckets = document.getElementById('buckets').value;
 
         // Store the form values in Chrome Storage
-        chrome.storage.local.set({
+        chrome.storage.sync.set({
             username,
             competencies,
             buckets

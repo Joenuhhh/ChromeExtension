@@ -1,5 +1,5 @@
 // Retrieve the buckets data from local storage
-chrome.storage.local.get(['bucketData'], function (result) {
+chrome.storage.sync.get(['bucketData'], function (result) {
     const bucketData = result.bucketData;
 
     // Check if bucketData exists and has data
@@ -91,7 +91,7 @@ chrome.storage.local.get(['bucketData'], function (result) {
         container.appendChild(bigCard);
 
         // Save the competencyToBucket mapping to Chrome Storage
-        chrome.storage.local.set({ competencyToBucket }, function () {
+        chrome.storage.sync.set({ competencyToBucket }, function () {
             console.log('Competency to Bucket mapping saved to Chrome Storage.');
             console.log('competencyToBucket:', competencyToBucket); // Log it here
         });
@@ -108,154 +108,159 @@ chrome.storage.local.get(['bucketData'], function (result) {
 });
 
 
-
+chrome.storage.local.get(['studentList'], function (S_result) {
+    chrome.storage.sync.get(['competencyToBucket', 'bucketData'], function (result) {
+        const studentList = S_result.studentList;
+        const bucketData = result.bucketData;
+        // Reverse mapping from buckets to competencies
+        const competencyToBucket = {};
+        console.log({before_bucketData:bucketData});
+        for (const bucketName in bucketData) {
+            console.log({for_bucketName:bucketName});
+            bucketData[bucketName].forEach(value => {
+                console.log("populating competency To Bucket")
+                const [competency, bucket] = value.split('-');
+                competencyToBucket[`Competency ${competency}`] = `Bucket ${bucket}`;
+            });
+        }
+        // Check if studentList exists and has data
+        if (studentList && studentList.length > 0) {
+            // Create a container div to display student data
+            const container = document.createElement('div');
+    
+            container.className = 'card-container';
+    
+            //make each student a card
+            container.classList.add('student');
+    
+    
+            // Iterate through each student in studentList
+            studentList.forEach(function (student, studentIndex) {
+                // Create a card for each student
+                const studentCard = document.createElement('div');
+                studentCard.className = 'card mb-3'; // Add margin-bottom for spacing between cards
+    
+                // Create a header for the student card with Name and ID
+                const studentHeader = document.createElement('h5');
+                studentHeader.className = 'card-header';
+                studentHeader.textContent = `${student['First Name'][0]} ${student['Last Name'][0]}, ID: ${student['ID'][0]}`;
+                studentCard.appendChild(studentHeader);
+    
+                // Create a body for the student card
+                const studentCardBody = document.createElement('div');
+                studentCardBody.className = 'card-body';
+    
+                // Create an unordered list for displaying competencies and grades
+                const competencyList = document.createElement('ul');
+                var bucketScores = [];
+    
+                // Iterate through each competency in the student
+                for (const competencyName in student) {
+                    if (competencyName !== 'First Name' && competencyName !== 'Last Name' && competencyName !== 'ID') {
+                        const competencyGrades = student[competencyName];
+                        var bucket = competencyToBucket[competencyName];
+                        const competencyItem = document.createElement('li');
+                        competencyItem.className = 'list-group list-group-flush deleteme2';
+                        var avg = calculateAverage(competencyGrades);
+    
+                        if (bucket !== undefined) {
+                            var currentBucket = bucketScores.find(m => m.bucketName == bucket);
+                            if (currentBucket === null || currentBucket === undefined) {
+                                bucketScores.push({
+                                    bucketName: bucket,
+                                    scores: [avg],
+                                });
+                            } else {
+                                currentBucket.scores.push(avg);
+                            }
+                        }
+    
+                        competencyItem.textContent = `${competencyName}: ${competencyGrades.join(', ')} (Average: ${avg})`;
+                        competencyList.appendChild(competencyItem);
+                    }
+                }
+    
+                const uniqueBuckets = new Set(Object.values(competencyToBucket)).size;
+                console.log({uniqueBuckets:uniqueBuckets});
+                // Add the "Bucket Grade" item
+                for (let i = 0; i < uniqueBuckets; i++) {
+                    const bucketGradeItem = document.createElement('li');
+                    bucketGradeItem.className = 'list-group list-group-flush';
+                    var currentName = `Bucket ${i + 1}`;
+                    var currentBuckett = bucketScores.find(m => m.bucketName === currentName);
+    
+                    if (currentBuckett === undefined) {
+                        bucketGradeItem.textContent = `Bucket ${i + 1} = ${0}`;
+                    } else {
+                        var scores = currentBuckett.scores;
+                        var scoreCount = scores.length;
+                        var scoreTotal = scores.reduce((pv, cv) => parseFloat(pv) + parseFloat(cv), 0);
+                        var scoreAVG = (scoreTotal ?? 0) / (scoreCount ?? 1);
+                        bucketGradeItem.textContent = `Bucket ${i + 1} = ${scoreAVG}`;
+                    }
+    
+                    competencyList.appendChild(bucketGradeItem);
+    
+                }
+    
+                // Append the competency list to the student card body
+                studentCardBody.appendChild(competencyList);
+    
+                // Append the student card body to the student card
+                studentCard.appendChild(studentCardBody);
+    
+                // Append the student card to the container
+                container.appendChild(studentCard);
+    
+               // Create a button for viewing student details
+        const viewButton = document.createElement('button');
+        viewButton.textContent = 'View Details';
+        viewButton.className = 'btn btn-primary btn-block'; 
+        viewButton.addEventListener('click', function () {
+            // Use studentIndex as the identifier to store in localStorage
+            localStorage.setItem('searchedStudentId', studentIndex.toString());
+            window.location.href = "singleStudent.html";
+        });
+    
+        // Append the button to the student card body
+        studentCardBody.appendChild(viewButton);
+                // Update the student object with bucket scores
+                student.bucketScores = bucketScores; // Add bucketScores to the student object
+                document.body.appendChild(container);
+    
+            });
+    
+            // Save the updated student list to Chrome storage
+            chrome.storage.local.set({ 'fullStudentList': studentList }, function () {
+                console.log('The full student list with bucket scores has been saved to Chrome storage.');
+            });
+            chrome.storage.local.get(['fullStudentList'], function (result) {
+                const fullStudentList = result.fullStudentList;
+                if (fullStudentList && fullStudentList.length > 0) {
+                    console.log('Full Student List with Bucket Scores:');
+                    fullStudentList.forEach(function (student, index) {
+                        console.log(`Student ${index + 1}:`, student);
+                    });
+                } else {
+                    console.log('The full student list is empty or not found.');
+                }
+            });
+    
+    
+        } else {
+            // Display a message if no student data is found
+            const noStudentDataMessage = document.createElement('p');
+            noStudentDataMessage.textContent = 'No student data found.';
+            document.body.appendChild(noStudentDataMessage);
+        }
+    });
+    
+});
 
 
 
 
 // Retrieve studentList data from Chrome local storage
-chrome.storage.local.get(['studentList', 'competencyToBucket', 'bucketData'], function (result) {
-    const studentList = result.studentList;
-    const bucketData = result.bucketData;
-    // Reverse mapping from buckets to competencies
-    const competencyToBucket = {};
-    for (const bucketName in bucketData) {
-        bucketData[bucketName].forEach(value => {
-            const [competency, bucket] = value.split('-');
-            competencyToBucket[`Competency ${competency}`] = `Bucket ${bucket}`;
-        });
-    }
-    // Check if studentList exists and has data
-    if (studentList && studentList.length > 0) {
-        // Create a container div to display student data
-        const container = document.createElement('div');
-
-        container.className = 'card-container';
-
-        //make each student a card
-        container.classList.add('student');
-
-
-        // Iterate through each student in studentList
-        studentList.forEach(function (student, studentIndex) {
-            // Create a card for each student
-            const studentCard = document.createElement('div');
-            studentCard.className = 'card mb-3'; // Add margin-bottom for spacing between cards
-
-            // Create a header for the student card with Name and ID
-            const studentHeader = document.createElement('h5');
-            studentHeader.className = 'card-header';
-            studentHeader.textContent = `${student['First Name'][0]} ${student['Last Name'][0]}, ID: ${student['ID'][0]}`;
-            studentCard.appendChild(studentHeader);
-
-            // Create a body for the student card
-            const studentCardBody = document.createElement('div');
-            studentCardBody.className = 'card-body';
-
-            // Create an unordered list for displaying competencies and grades
-            const competencyList = document.createElement('ul');
-            var bucketScores = [];
-
-            // Iterate through each competency in the student
-            for (const competencyName in student) {
-                if (competencyName !== 'First Name' && competencyName !== 'Last Name' && competencyName !== 'ID') {
-                    const competencyGrades = student[competencyName];
-                    var bucket = competencyToBucket[competencyName];
-                    const competencyItem = document.createElement('li');
-                    competencyItem.className = 'list-group list-group-flush';
-                    var avg = calculateAverage(competencyGrades);
-
-                    if (bucket !== undefined) {
-                        var currentBucket = bucketScores.find(m => m.bucketName == bucket);
-                        if (currentBucket === null || currentBucket === undefined) {
-                            bucketScores.push({
-                                bucketName: bucket,
-                                scores: [avg],
-                            });
-                        } else {
-                            currentBucket.scores.push(avg);
-                        }
-                    }
-
-                    competencyItem.textContent = `${competencyName}: ${competencyGrades.join(', ')} (Average: ${avg})`;
-                    competencyList.appendChild(competencyItem);
-                }
-            }
-
-            const uniqueBuckets = new Set(Object.values(competencyToBucket)).size;
-
-            // Add the "Bucket Grade" item
-            for (let i = 0; i < uniqueBuckets; i++) {
-                const bucketGradeItem = document.createElement('li');
-                bucketGradeItem.className = 'list-group list-group-flush';
-                var currentName = `Bucket ${i + 1}`;
-                var currentBuckett = bucketScores.find(m => m.bucketName === currentName);
-
-                if (currentBuckett === undefined) {
-                    bucketGradeItem.textContent = `Bucket ${i + 1} = ${0}`;
-                } else {
-                    var scores = currentBuckett.scores;
-                    var scoreCount = scores.length;
-                    var scoreTotal = scores.reduce((pv, cv) => parseFloat(pv) + parseFloat(cv), 0);
-                    var scoreAVG = (scoreTotal ?? 0) / (scoreCount ?? 1);
-                    bucketGradeItem.textContent = `Bucket ${i + 1} = ${scoreAVG}`;
-                }
-
-                competencyList.appendChild(bucketGradeItem);
-
-            }
-
-            // Append the competency list to the student card body
-            studentCardBody.appendChild(competencyList);
-
-            // Append the student card body to the student card
-            studentCard.appendChild(studentCardBody);
-
-            // Append the student card to the container
-            container.appendChild(studentCard);
-
-           // Create a button for viewing student details
-    const viewButton = document.createElement('button');
-    viewButton.textContent = 'View Details';
-    viewButton.className = 'btn btn-primary btn-block'; 
-    viewButton.addEventListener('click', function () {
-        // Use studentIndex as the identifier to store in localStorage
-        localStorage.setItem('searchedStudentId', studentIndex.toString());
-        window.location.href = "singleStudent.html";
-    });
-
-    // Append the button to the student card body
-    studentCardBody.appendChild(viewButton);
-            // Update the student object with bucket scores
-            student.bucketScores = bucketScores; // Add bucketScores to the student object
-            document.body.appendChild(container);
-
-        });
-
-        // Save the updated student list to Chrome storage
-        chrome.storage.local.set({ 'fullStudentList': studentList }, function () {
-            console.log('The full student list with bucket scores has been saved to Chrome storage.');
-        });
-        chrome.storage.local.get(['fullStudentList'], function (result) {
-            const fullStudentList = result.fullStudentList;
-            if (fullStudentList && fullStudentList.length > 0) {
-                console.log('Full Student List with Bucket Scores:');
-                fullStudentList.forEach(function (student, index) {
-                    console.log(`Student ${index + 1}:`, student);
-                });
-            } else {
-                console.log('The full student list is empty or not found.');
-            }
-        });
-
-
-    } else {
-        // Display a message if no student data is found
-        const noStudentDataMessage = document.createElement('p');
-        noStudentDataMessage.textContent = 'No student data found.';
-        document.body.appendChild(noStudentDataMessage);
-    }
-});
 
 
 
@@ -409,6 +414,16 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         console.log('Button element not found'); // Add this line for debugging
     }
+    document.getElementById('restart').addEventListener('click', function(event){
+        // Initialize an object to represent buckets and their competencies
+    let bucketData = {};
+    console.log("button Clicked");
+    // Clear the bucketData at the beginning
+    chrome.storage.sync.set({ bucketData }, function() {
+        window.location.href = 'popup.html';
+    });
+    
+    })
 });
 
 function downloadCSV(csvContent, fileName) {
@@ -432,5 +447,6 @@ function downloadCSV(csvContent, fileName) {
     // Clean up by removing the link
     document.body.removeChild(link);
 }
+
 
 

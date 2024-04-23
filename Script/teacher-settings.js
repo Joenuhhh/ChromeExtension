@@ -2,9 +2,9 @@
 let bucketData = {};
 
 // Clear the bucketData at the beginning
-chrome.storage.local.set({ bucketData }, function() {
+chrome.storage.sync.set({ bucketData }, function() {
     // Retrieve user selections from Chrome Storage
-    chrome.storage.local.get(['competencies', 'buckets'], function(result) {
+    chrome.storage.sync.get(['competencies', 'buckets'], function(result) {
         const competencies = result.competencies || 0;
         const buckets = result.buckets || 0;
 
@@ -82,7 +82,7 @@ chrome.storage.local.set({ bucketData }, function() {
                 console.log('Competencies in Buckets:', bucketData);
 
                 // Store the updated data in Chrome storage
-                chrome.storage.local.set({ bucketData }, function() {
+                chrome.storage.sync.set({ bucketData }, function() {
                     // Submit the form to navigate to chart.html after storage is updated
                     document.getElementById('settingsForm').submit();
 
