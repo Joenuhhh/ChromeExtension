@@ -1,7 +1,10 @@
-# Web Scraping Chrome Extension: Grade Organizer
+# Ez Grader: A Revolution in Local Grading
 
 <p align="center">
-  <img src="https://github.com/Joenuhhh/ChromeExtension" alt="Grade Organizer" width="400"/>
+  ![image](https://github.com/Joenuhhh/ChromeExtension/assets/79020295/9a727e00-2cc4-4ae7-8433-f4f99d57a9d5)
+
+
+
 </p>
 
 ## Overview
