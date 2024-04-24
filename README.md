@@ -21,6 +21,19 @@ Central to Ez Grader's design philosophy is its intuitive user interface, which 
 - **User-friendly Interface**: Intuitive interface with drag-and-drop functionality for seamless grade manipulation.
 - **Chrome Extension**: Conveniently integrates with Chrome browser for easy access and usability.
 
+
+## HARDWARE AND SOFTWARE TECHNOLOGIES
+
+- **Google Chrome Extension:** The foundation of Ez Grader, developed as a Google Chrome extension to seamlessly integrate with educators' browsing experience. Leveraging manifest V3, the latest extension manifest format, for enhanced security and performance.
+
+- **Visual Studio Code (v. Latest Version):** Visual Studio Code serves as the primary Integrated Development Environment (IDE) for Ez Grader's development. Its robust extensions ecosystem facilitates efficient coding and debugging, streamlining the development process.
+
+- **Plotly.js (v2.29.1):** Plotly.js is utilized within Ez Grader to provide interactive data visualization capabilities. With its rich set of features and compatibility with various platforms, Plotly.js enhances the presentation of academic data for educators.
+
+- **Jest (v. Latest Version):** Jest, a popular JavaScript testing framework, is employed for unit testing within Ez Grader. Ensuring code reliability and identifying potential issues early in the development process, Jest contributes to the overall quality and stability of the application.
+
+- **JavaScript, HTML, and CSS:** These fundamental web development technologies form the backbone of Ez Grader's frontend. JavaScript powers dynamic functionalities, HTML structures the content, and CSS styles the user interface, collectively delivering a seamless and engaging user experience.
+
 ### Flow chart of the Data Transfer:
 
 <p align="center">
