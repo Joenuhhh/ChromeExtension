@@ -176,8 +176,6 @@ In bucket selection, users choose the number of competencies and buckets via the
 
 - **Testing and Quality Assurance:** Utilize testing frameworks like Jest for unit testing to ensure the reliability and stability of the application. Conduct thorough testing across different browsers and devices to ensure compatibility.
 
-- **Continuous Integration and Deployment:** Set up continuous integration pipelines to automate testing and deployment processes. Deploy the Ez Grader extension to the Chrome Web Store for easy accessibility to educators.
-
 - **Documentation and Support:** Provide comprehensive documentation and tutorials within the extension to assist educators in using the tool effectively. Implement a feedback mechanism to gather user input for continuous improvement.
 
 ## Learning Technologies
