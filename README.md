@@ -3,9 +3,6 @@
 <p align="center">
   <img src="https://github.com/Joenuhhh/ChromeExtension/assets/79020295/9a727e00-2cc4-4ae7-8433-f4f99d57a9d5" style="width: 120%;">
 
-
-
-
 </p>
 
 ## OVERVIEW
@@ -15,6 +12,18 @@ In today's rapidly advancing digital world, the integration of web scraping tech
 Ez Grader is a pioneering application designed specifically for educators, harnessing the power of secure web scraping technology to gather, process, and present data seamlessly. With a focus on efficiency and user-friendliness, the primary objectives of Ez Grader include establishing robust web scraping capabilities, deploying seamlessly on the Google Chrome Web Store, ensuring stringent data security measures, and offering dynamic data manipulation functionalities. Notably, the application prioritizes customizable export options, particularly Excel, to cater to the diverse academic needs of educators.
 
 Central to Ez Grader's design philosophy is its intuitive user interface, which ensures accessibility for educators of all technological backgrounds. By presenting a refined, secure, and intuitive tool, Ez Grader aims to transform the traditional paradigm of academic data management, empowering educators to streamline their grading processes and focus on what truly matters: fostering student growth and success.
+
+## INSTALLATION
+
+Option 1. Clone the repository:
+
+```bash
+git clone https://github.com/Joenuhhh/ChromeExtension
+```
+Option 2. Install from the chome web store:
+```bash
+https://chromewebstore.google.com/detail/easy-grader/aecnkiaoopekpbilooaoknpkipjfohke?hl=en&authuser=0
+```
 
 ## FEATURES
 
@@ -144,19 +153,18 @@ In bucket selection, users choose the number of competencies and buckets via the
   <img src="https://github.com/Joenuhhh/ChromeExtension/assets/79020295/1aee9fcd-476b-4bc8-a93d-101f570612a9" alt="Variable Size Buckets 2" width="400"/>
 </p>
 
-## INSTALLATION
+### WIREFRAME
+<p align="center">
+<img src="https://github.com/Joenuhhh/ChromeExtension/assets/79020295/320fed8b-d675-4454-81d6-55861a44555e"/>
+</p>
 
-Option 1. Clone the repository:
+### SITEMAP
+<p align="center">
+<img src="https://github.com/Joenuhhh/ChromeExtension/assets/79020295/9557cc7d-51d0-429c-8868-aff8ddeea9cb"/>
+</p>
 
-```bash
-git clone https://github.com/Joenuhhh/ChromeExtension
-```
-Option 2. Install from the chome web store:
-```bash
-https://chromewebstore.google.com/detail/easy-grader/aecnkiaoopekpbilooaoknpkipjfohke?hl=en&authuser=0
-```
 
-# General Technical Approach
+## GENERAL TECHNICAL APPROACH
 
 - **Chrome Extension Development:** Utilize web technologies such as HTML, CSS, and JavaScript to develop the Ez Grader Chrome extension. Leverage the manifest V3 format for enhanced security and performance.
 
@@ -171,4 +179,16 @@ https://chromewebstore.google.com/detail/easy-grader/aecnkiaoopekpbilooaoknpkipj
 - **Continuous Integration and Deployment:** Set up continuous integration pipelines to automate testing and deployment processes. Deploy the Ez Grader extension to the Chrome Web Store for easy accessibility to educators.
 
 - **Documentation and Support:** Provide comprehensive documentation and tutorials within the extension to assist educators in using the tool effectively. Implement a feedback mechanism to gather user input for continuous improvement.
+
+## Learning Technologies
+
+- **Chrome Extension Development:** Learning to create a Chrome extension was a significant aspect of the project. This involved understanding how to create a manifest JSON file and comprehend its contents for configuring the extension's behavior and permissions.
+
+- **Testing with Jest:** Using Jest for unit testing and creating mock environments was a learning curve. It involved understanding how to set up tests, write test cases, and ensure the reliability and stability of the application.
+
+- **Integration of Plotly.js:** Implementing Plotly.js posed a challenge due to restrictions on inline scripts in Chrome extensions. Overcoming this hurdle required finding alternative methods to integrate Plotly.js for interactive data visualization within the extension. This took more time than anything else in the project.
+
+- **Client Communication:** Working closely with the client required effective communication to ensure their specific needs were met. It involved understanding their requirements, providing regular updates, and addressing any concerns or feedback promptly.
+
+- **Chrome Web Store Approval:** Getting the extension approved on the Chrome Web Store involved navigating through the submission process and adhering to quality standards. This included ensuring compliance with guidelines, fixing any issues flagged during review, and delivering a polished application for users.
 
