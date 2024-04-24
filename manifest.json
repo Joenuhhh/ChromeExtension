@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Easy Grader!",
-  "version": "3.7.2",
+  "version": "4.0",
   "description": "A Chrome extension made to reorganize student html data of a specific format to a visual manner for my small town local teachers.",
   "permissions": ["activeTab", "scripting", "storage"],
   "action": {
