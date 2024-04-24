@@ -6,7 +6,11 @@
 
 ## Overview
 
-The Grade Organizer is a Chrome extension designed to assist teachers in efficiently organizing and managing student grades scraped from various sources. It provides a user-friendly interface for teachers to rearrange and categorize grades according to their preferences, streamlining the grading process and enhancing productivity.
+In today's rapidly advancing digital world, the integration of web scraping techniques and cloud-based servers serves as the cornerstone for developing sophisticated tools. At Bioscience High School, educators are grappling with a cumbersome rubric issue within their grading software, which hampers their efficiency and leaves them feeling stuck in the past. To address this challenge head-on, a new Chrome extension, Ez Grader, is poised to revolutionize the grading process and reclaim valuable time and attention for faculty members.
+
+Ez Grader is a pioneering application designed specifically for educators, harnessing the power of secure web scraping technology to gather, process, and present data seamlessly. With a focus on efficiency and user-friendliness, the primary objectives of Ez Grader include establishing robust web scraping capabilities, deploying seamlessly on the Google Chrome Web Store, ensuring stringent data security measures, and offering dynamic data manipulation functionalities. Notably, the application prioritizes customizable export options, particularly Excel, to cater to the diverse academic needs of educators.
+
+Central to Ez Grader's design philosophy is its intuitive user interface, which ensures accessibility for educators of all technological backgrounds. By presenting a refined, secure, and intuitive tool, Ez Grader aims to transform the traditional paradigm of academic data management, empowering educators to streamline their grading processes and focus on what truly matters: fostering student growth and success.
 
 ## Features
 
