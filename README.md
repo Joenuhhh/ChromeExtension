@@ -189,5 +189,3 @@ In bucket selection, users choose the number of competencies and buckets via the
 - **Client Communication:** Working closely with the client required effective communication to ensure their specific needs were met. It involved understanding their requirements, providing regular updates, and addressing any concerns or feedback promptly.
 
 - **Chrome Web Store Approval:** Getting the extension approved on the Chrome Web Store involved navigating through the submission process and adhering to quality standards. This included ensuring compliance with guidelines, fixing any issues flagged during review, and delivering a polished application for users.
-
-.
